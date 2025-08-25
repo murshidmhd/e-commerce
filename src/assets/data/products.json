@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Football",
+    "category": "Outdoor",
+    "price": 799,
+    "image": "https://example.com/images/football.jpg",
+    "description": "Durable PU leather football, perfect for matches and practice."
+  },
+  {
+    "id": 2,
+    "name": "Cricket Bat",
+    "category": "Outdoor",
+    "price": 2499,
+    "image": "https://example.com/images/cricket-bat.jpg",
+    "description": "Kashmir willow cricket bat suitable for beginners and professionals."
+  },
+  {
+    "id": 3,
+    "name": "Badminton Racket",
+    "category": "Indoor",
+    "price": 1299,
+    "image": "https://example.com/images/badminton-racket.jpg",
+    "description": "Lightweight carbon fiber racket with high durability."
+  },
+  {
+    "id": 4,
+    "name": "Basketball",
+    "category": "Outdoor",
+    "price": 899,
+    "image": "https://example.com/images/basketball.jpg",
+    "description": "Official size 7 basketball made with high-quality rubber."
+  },
+  {
+    "id": 5,
+    "name": "Running Shoes",
+    "category": "Footwear",
+    "price": 3499,
+    "image": "https://example.com/images/running-shoes.jpg",
+    "description": "Breathable and comfortable running shoes for daily use."
+  },
+  {
+    "id": 6,
+    "name": "Tennis Ball Pack",
+    "category": "Outdoor",
+    "price": 499,
+    "image": "https://example.com/images/tennis-balls.jpg",
+    "description": "Pack of 6 premium tennis balls for practice and matches."
+  }
+]
