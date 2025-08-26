@@ -31,24 +31,6 @@
     },
     {
       "id": 2,
-      "title": "To Kill a Mockingbird",
-      "author": "Harper Lee",
-      "type": "donation",
-      "price": 0,
-      "condition": "Like New",
-      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81OdwZG0GCL.jpg"
-    },
-    {
-      "id": 3,
-      "title": "1984",
-      "author": "George Orwell",
-      "type": "bogo",
-      "price": 200,
-      "condition": "Very Good",
-      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71kxa1-0AfL.jpg"
-    },
-    {
-      "id": 4,
       "title": "The Catcher in the Rye",
       "author": "J.D. Salinger",
       "type": "sale",
@@ -57,16 +39,7 @@
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81OthjkJBuL.jpg"
     },
     {
-      "id": 5,
-      "title": "Pride and Prejudice",
-      "author": "Jane Austen",
-      "type": "donation",
-      "price": 0,
-      "condition": "Good",
-      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81zdv4kHDHL.jpg"
-    },
-    {
-      "id": 6,
+      "id": 3,
       "title": "The Hobbit",
       "author": "J.R.R. Tolkien",
       "type": "bogo",
@@ -75,16 +48,7 @@
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/91b0C2YNSrL.jpg"
     },
     {
-      "id": 7,
-      "title": "Moby Dick",
-      "author": "Herman Melville",
-      "type": "sale",
-      "price": 180,
-      "condition": "Good",
-      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81PRpYPI3xL.jpg"
-    },
-    {
-      "id": 8,
+      "id": 4,
       "title": "Brave New World",
       "author": "Aldous Huxley",
       "type": "donation",
@@ -93,7 +57,7 @@
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg"
     },
     {
-      "id": 9,
+      "id": 5,
       "title": "The Alchemist",
       "author": "Paulo Coelho",
       "type": "sale",
@@ -102,16 +66,7 @@
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51Z0nLAfLmL._SX331_BO1,204,203,200_.jpg"
     },
     {
-      "id": 10,
-      "title": "Sapiens: A Brief History of Humankind",
-      "author": "Yuval Noah Harari",
-      "type": "sale",
-      "price": 350,
-      "condition": "Good",
-      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/41X5R0EoQhL._SX327_BO1,204,203,200_.jpg"
-    },
-    {
-      "id": 11,
+      "id": 6,
       "title": "Educated",
       "author": "Tara Westover",
       "type": "donation",
@@ -120,7 +75,7 @@
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81WojUxbbFL.jpg"
     },
     {
-      "id": 12,
+      "id": 7,
       "title": "Atomic Habits",
       "author": "James Clear",
       "type": "bogo",
@@ -129,7 +84,7 @@
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51-nXsSRfZL._SX329_BO1,204,203,200_.jpg"
     },
     {
-      "id": 13,
+      "id": 8,
       "title": "The Subtle Art of Not Giving a F*ck",
       "author": "Mark Manson",
       "type": "sale",
@@ -138,7 +93,7 @@
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71QKQ9mwV7L.jpg"
     },
     {
-      "id": 14,
+      "id": 9,
       "title": "Becoming",
       "author": "Michelle Obama",
       "type": "donation",
@@ -147,7 +102,7 @@
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81h2gWPTYJL.jpg"
     },
     {
-      "id": 15,
+      "id": 10,
       "title": "The Power of Habit",
       "author": "Charles Duhigg",
       "type": "bogo",
@@ -156,34 +111,7 @@
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg"
     },
     {
-      "id": 16,
-      "title": "Thinking, Fast and Slow",
-      "author": "Daniel Kahneman",
-      "type": "sale",
-      "price": 320,
-      "condition": "Acceptable",
-      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/41ON5vGnoKL._SX332_BO1,204,203,200_.jpg"
-    },
-    {
-      "id": 17,
-      "title": "Quiet: The Power of Introverts",
-      "author": "Susan Cain",
-      "type": "donation",
-      "price": 0,
-      "condition": "Very Good",
-      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81E0l5UsJwL.jpg"
-    },
-    {
-      "id": 18,
-      "title": "Dune",
-      "author": "Frank Herbert",
-      "type": "sale",
-      "price": 200,
-      "condition": "Like New",
-      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/91hGdjuiLGL.jpg"
-    },
-    {
-      "id": 19,
+      "id": 11,
       "title": "The Lean Startup",
       "author": "Eric Ries",
       "type": "bogo",
@@ -192,13 +120,31 @@
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg"
     },
     {
-      "id": 20,
+      "id": 12,
       "title": "Harry Potter and the Sorcerer’s Stone",
       "author": "J.K. Rowling",
       "type": "sale",
       "price": 250,
       "condition": "Very Good",
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81YOuOGFCJL.jpg"
+    },
+    {
+      "id": "6938",
+      "title": "a story ",
+      "author": "favas",
+      "type": "sale",
+      "price": 0,
+      "condition": "Acceptable",
+      "imageUrl": "mmm"
+    },
+    {
+      "id": "d8ed",
+      "title": "murhd",
+      "author": "sdfsfs",
+      "type": "sale",
+      "price": 323742,
+      "condition": "Acceptable",
+      "imageUrl": "msfn"
     }
   ]
 }

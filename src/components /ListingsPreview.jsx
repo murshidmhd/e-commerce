@@ -10,7 +10,7 @@ const ListingsPreview = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/listings?_limit=10  ")
+      .get("http://localhost:3000/listings?_limit=12 ")
       .then((res) => setListings(res.data))
       .catch(() => setError("Failed to load listings."))
       .finally(() => setLoading(false));
@@ -22,7 +22,7 @@ const ListingsPreview = () => {
   return (
     <section className="mt-8">
       <h2 className="text-2xl font-semibold mb-4">Featured Listings</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6">
         {listings.map((item) => (
           <Link
             key={item.id}
@@ -30,7 +30,7 @@ const ListingsPreview = () => {
             className="flex flex-col h-full border rounded-lg overflow-hidden hover:shadow-lg transition-shadow bg-white"
           >
             {/* 1. Fixed aspect ratio box for all covers */}
-            <div className="w-full aspect-[3/2] overflow-hidden">
+            <div className="w-full h-90 aspect-[3/2] overflow-hidden">
               <img
                 src={item.imageUrl}
                 alt={item.title}

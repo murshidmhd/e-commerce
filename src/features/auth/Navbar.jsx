@@ -19,7 +19,7 @@ function Navbar() {
             Home
           </Link>
           <Link
-            to="/products"
+            to="/shop"
             className="text-gray-700 hover:text-cyan-500 font-medium transition"
           >
             Shop
