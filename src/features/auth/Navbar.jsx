@@ -7,7 +7,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="text-2xl font-bold text-cyan-600">
-          MyStore
+          TheBook
         </Link>
 
         {/* Navigation Links */}
@@ -22,7 +22,13 @@ function Navbar() {
             to="/products"
             className="text-gray-700 hover:text-cyan-500 font-medium transition"
           >
-            Products
+            Shop
+          </Link>
+           <Link
+            to="/Donate"
+            className="text-gray-700 hover:text-cyan-500 font-medium transition"
+          >
+            Donate
           </Link>
           <Link
             to="/cart"
@@ -36,12 +42,12 @@ function Navbar() {
           >
             Login
           </Link>
-          <Link
+          {/* <Link
             to="/register"
             className="text-gray-700 hover:text-cyan-500 font-medium transition"
           >
             Register
-          </Link>
+          </Link> */}
         </div>
       </div>
     </nav>
