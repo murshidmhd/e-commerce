@@ -17,7 +17,8 @@ const ListingsPreview = () => {
   }, []);
 
   if (loading) return <div className="text-center py-10">Loading…</div>;
-  if (error)   return <div className="text-center py-10 text-red-500">{error}</div>;
+  if (error)
+    return <div className="text-center py-10 text-red-500">{error}</div>;
 
   return (
     <section className="mt-8">
@@ -47,13 +48,17 @@ const ListingsPreview = () => {
               <div className="mt-auto flex items-center justify-between text-xs text-gray-500">
                 <div>
                   {item.type === "sale" && (
-                    <span className="text-indigo-600 font-bold">₹{item.price}</span>
+                    <span className="text-indigo-600 font-bold">
+                      ₹{item.price}
+                    </span>
                   )}
                   {item.type === "donation" && (
                     <span className="text-green-600 font-semibold">Free</span>
                   )}
                   {item.type === "bogo" && (
-                    <span className="text-yellow-600 font-semibold">BOGO Offer</span>
+                    <span className="text-yellow-600 font-semibold">
+                      BOGO Offer
+                    </span>
                   )}
                 </div>
                 <span>{item.condition}</span>

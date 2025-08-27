@@ -128,21 +128,13 @@
       "condition": "Very Good",
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81YOuOGFCJL.jpg"
     },
-    {
-      "id": "6938",
-      "title": "a story ",
-      "author": "favas",
-      "type": "sale",
-      "price": 0,
-      "condition": "Acceptable",
-      "imageUrl": "mmm"
-    },
+
     {
       "id": "d8ed",
       "title": "murhd",
       "author": "sdfsfs",
       "type": "sale",
-      "price": 323742,
+      "price": 323,
       "condition": "Acceptable",
       "imageUrl": "msfn"
     }

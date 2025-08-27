@@ -7,6 +7,8 @@ import Navbar from "./features/auth/Navbar";
 import SlideShow from "./components /Home";
 import Shop from "./features/products/Shop";
 import AddListing from "./features/products/AddListing";
+import Cart from "./features/cart/Cart";
+import ProtectedRoute from "./features/auth/PortectedRoute";
 function App() {
   return (
     <>
@@ -17,6 +19,14 @@ function App() {
         <Route path="/" element={<SlideShow />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          }
+        ></Route>
       </Routes>
     </>
   );

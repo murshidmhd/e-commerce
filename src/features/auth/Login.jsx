@@ -23,6 +23,7 @@ function Login() {
         setError("invaid credentials");
         return;
       }
+      localStorage.setItem("isLoggedIn" , "true")
       console.log("Login success for:", users[0]);
     } catch (err) {
       setError("login failed");
