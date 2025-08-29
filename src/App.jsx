@@ -7,8 +7,9 @@ import Navbar from "./features/auth/Navbar";
 import SlideShow from "./components /Home";
 import Shop from "./features/products/Shop";
 import AddListing from "./features/products/AddListing";
-import Cart from "./features/cart/Cart";
+import Cart from "./features/cart-wish/Cart";
 import ProtectedRoute from "./features/auth/PortectedRoute";
+import Wishlist from "./features/cart-wish/Wish";
 function App() {
   return (
     <>
@@ -27,6 +28,7 @@ function App() {
             </ProtectedRoute>
           }
         ></Route>
+        <Route path="/wishlist" element={<Wishlist />}></Route>
       </Routes>
     </>
   );

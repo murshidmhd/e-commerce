@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   HeartIcon,
   ShoppingCartIcon,
@@ -7,8 +7,14 @@ import {
 } from "@heroicons/react/24/outline";
 
 function Navbar() {
-  // Sample cart count, replace with real state later
-  const cartCount = 3;
+  const cartCount = 3; // replace with real cart count from context or props
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    navigate("/login");
+  };
 
   return (
     <nav className="bg-white shadow-md border-b border-gray-200">
@@ -30,10 +36,10 @@ function Navbar() {
             Shop
           </Link>
           <Link
-            to="/donate"
+            to="/order"
             className="hover:text-cyan-600 transition duration-200"
           >
-            Donate
+            Order
           </Link>
         </div>
 
@@ -45,7 +51,6 @@ function Navbar() {
             className="relative text-gray-700 hover:text-cyan-600 transition duration-200"
           >
             <HeartIcon className="w-7 h-7" />
-            {/* Add badge if needed */}
           </Link>
 
           {/* Cart */}
@@ -61,14 +66,23 @@ function Navbar() {
             )}
           </Link>
 
-          {/* Login */}
-          <Link
-            to="/login"
-            className="text-gray-700 hover:text-cyan-600 transition duration-200 flex items-center space-x-1"
-          >
-            <UserCircleIcon className="w-7 h-7" />
-            <span className="hidden md:inline font-medium">Login</span>
-          </Link>
+          {/* Login or Logout */}
+          {!isLoggedIn ? (
+            <Link
+              to="/login"
+              className="text-gray-700 hover:text-cyan-600 transition duration-200 flex items-center space-x-1"
+            >
+              <UserCircleIcon className="w-7 h-7" />
+              <span className="hidden md:inline font-medium">Login</span>
+            </Link>
+          ) : (
+            <button
+              onClick={handleLogout}
+              className="text-red-600 hover:text-red-700 font-medium px-3 py-1 border border-red-600 rounded transition"
+            >
+              Logout
+            </button>
+          )}
         </div>
       </div>
     </nav>

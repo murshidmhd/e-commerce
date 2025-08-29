@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 
 function Register() {
@@ -17,7 +17,7 @@ function Register() {
     }
     try {
       const newUser = { name, email, password };
-      const response = await axios.post("http://localhost:5000/users", newUser);
+      const response = await axios.post("http://localhost:3000/users", newUser);
       console.log("user registered", response.data);
       alert("registered");
     } catch (err) {

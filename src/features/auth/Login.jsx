@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,15 +18,16 @@ function Login() {
     }
     try {
       const response = await axios.get(
-        `http://localhost:5000/users?email=${email}`
+        `http://localhost:3000/users?email=${email}`
       );
       const users = response.data;
       if (users.length === 0 || users[0].password !== password) {
         setError("invaid credentials");
         return;
       }
-      localStorage.setItem("isLoggedIn" , "true")
+      localStorage.setItem("isLoggedIn","true");
       console.log("Login success for:", users[0]);
+      navigate("/");
     } catch (err) {
       setError("login failed");
     }
