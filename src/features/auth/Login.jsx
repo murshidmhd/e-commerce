@@ -12,29 +12,50 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+
     if (!email || !password) {
       setError("Email and password are required.");
       return;
     }
+
     try {
       const response = await axios.get(
         `http://localhost:3000/users?email=${email}`
       );
       const users = response.data;
+
       if (users.length === 0 || users[0].password !== password) {
-        setError("invaid credentials");
+        setError("Invalid credentials");
         return;
       }
-      localStorage.setItem("isLoggedIn","true");
-      console.log("Login success for:", users[0]);
+
+      // ✅ Store new session
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userId", users[0].id);
+
+      // ✅ Clear old cart from localStorage
+      localStorage.removeItem("cart");
+      localStorage.removeItem("wishlist");
+
+      // ✅ Optionally: fetch this user's cart from server immediately
+      const userData = await axios.get(
+        `http://localhost:3000/users/${users[0].id}`
+      );
+      localStorage.setItem("cart", JSON.stringify(userData.data.cart || []));
+      localStorage.setItem(
+        "wishlist",
+        JSON.stringify(userData.data.wishlist || [])
+      );
+
       navigate("/");
     } catch (err) {
-      setError("login failed");
+      console.error(err);
+      setError("Login failed. Please try again.");
     }
   };
 
   const handleGoogleLogin = () => {
-    // google click working function
+    /*google click working function*/
   };
 
   return (

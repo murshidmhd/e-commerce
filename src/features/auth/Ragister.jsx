@@ -7,6 +7,8 @@ function Register() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState("");
+  const cart = [];
+  const wishlist = [];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,12 +18,13 @@ function Register() {
       return;
     }
     try {
-      const newUser = { name, email, password };
+      const newUser = { name, email, password, cart, wishlist };
       const response = await axios.post("http://localhost:3000/users", newUser);
       console.log("user registered", response.data);
       alert("registered");
-    } catch (err) {
+    } catch (e) {
       setError("Registration failed");
+      console.log(e);
     }
   };
 

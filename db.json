@@ -1,34 +1,83 @@
 {
   "users": [
     {
-      "id": "f896",
-      "name": "dfdfddfdf",
-      "email": "fdf@hsmf",
-      "password": "fdfd"
-    },
-    {
-      "id": "2e75",
-      "name": "murshid ",
-      "email": "murshidmuhammad@gmail.com",
-      "password": "msyt"
-    },
-    {
-      "id": "2805",
-      "name": "anas",
-      "email": "anas@123",
-      "password": "123"
-    },
-    {
-      "id": "94df",
-      "name": "musdf",
-      "email": "fds2fdsf@sfdfd",
-      "password": "sdfsd"
-    },
-    {
-      "id": "cc4f",
+      "id": "7fe1",
       "name": "murshid",
       "email": "murshid@gmail.com",
-      "password": "786786ms"
+      "password": "786786ms",
+      "cart": [
+        {
+          "itemId": "12",
+          "title": "Harry Potter and the Sorcerer’s Stone",
+          "price": 250,
+          "quantity": 1
+        },
+        {
+          "itemId": "3",
+          "title": "The Hobbit",
+          "price": 250,
+          "quantity": 1
+        },
+        {
+          "itemId": "11",
+          "title": "The Lean Startup",
+          "price": 275,
+          "quantity": 12
+        },
+        {
+          "itemId": "10",
+          "title": "The Power of Habit",
+          "price": 250,
+          "quantity": 16
+        },
+        {
+          "itemId": "4",
+          "title": "Brave New World",
+          "price": 0,
+          "quantity": 3
+        }
+      ],
+      "wishlist": []
+    },
+    {
+      "id": "d608",
+      "name": "anu",
+      "email": "anu@gmail.com",
+      "password": "786786ms",
+      "cart": [
+        {
+          "itemId": "11",
+          "title": "The Lean Startup",
+          "price": 275,
+          "quantity": 7
+        },
+        {
+          "itemId": "7",
+          "title": "Atomic Habits",
+          "price": 299,
+          "quantity": 4
+        }
+      ]
+    },
+    {
+      "id": "deb2",
+      "name": "favas  ",
+      "email": "favas@gmail.com",
+      "password": "123456",
+      "cart": [
+        {
+          "itemId": "11",
+          "title": "The Lean Startup",
+          "price": 275,
+          "quantity": 5
+        },
+        {
+          "itemId": "12",
+          "title": "Harry Potter and the Sorcerer’s Stone",
+          "price": 250,
+          "quantity": 7
+        }
+      ]
     }
   ],
   "listings": [

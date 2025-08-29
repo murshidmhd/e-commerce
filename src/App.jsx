@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, Router } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Login from "./features/auth/Login";
 import Register from "./features/auth/Ragister";
 import Navbar from "./features/auth/Navbar";
@@ -10,10 +10,17 @@ import AddListing from "./features/products/AddListing";
 import Cart from "./features/cart-wish/Cart";
 import ProtectedRoute from "./features/auth/PortectedRoute";
 import Wishlist from "./features/cart-wish/Wish";
+import OrderPage from "./features/products/OrderPage";
 function App() {
+  const location = useLocation();
+
+  const hideNavbar = ["/login", "/register"];
+
+  const showNavbar = !hideNavbar.includes(location.pathname);
+  // console.log(showNavbar);
   return (
     <>
-      <Navbar />
+      {showNavbar && <Navbar />}
       <Routes>
         <Route path="/shop" element={<Shop />} />
         <Route path="/addlisting" element={<AddListing />} />
@@ -29,6 +36,7 @@ function App() {
           }
         ></Route>
         <Route path="/wishlist" element={<Wishlist />}></Route>
+        <Route path="/order" element={<OrderPage />} />
       </Routes>
     </>
   );
