@@ -27,6 +27,7 @@ function App() {
         <Route path="/" element={<SlideShow />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/profile" ></Route>
         <Route
           path="/cart"
           element={
