@@ -5,10 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { useWishlist } from "../cart-wish/WishListContext";
 
 function Shop() {
-  const { setCartItems } = useCart();
+  const { addToCart } = useCart();
   const navigate = useNavigate();
   const { addToWishlist } = useWishlist();
-
   const [listing, setListing] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -58,61 +57,42 @@ function Shop() {
     );
   }
 
-  // const handleAddToCart = (item) => {
-  //   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-  //   if (isLoggedIn) {
-  //     addToCart(item);
-  //   } else {
-  //     navigate("/login");
-  //   }
-  // };
-
-  const handleAddToCart = async (product) => {
-    const userId = localStorage.getItem("userId");
-    if (!userId) return navigate("/login");
-
-    const { data: user } = await axios.get(
-      `http://localhost:3000/users/${userId}`
-    );
-    let updatedCart = [...user.cart];
-
-    const exists = updatedCart.find((c) => c.itemId === product.id);
-
-    if (exists) {
-      updatedCart = updatedCart.map((c) =>
-        c.itemId === product.id ? { ...c, quantity: c.quantity + 1 } : c
-      );
-    } else {
-      updatedCart.push({
-        itemId: product.id,
-        title: product.title,
-        price: product.price,
-        quantity: 1,
-      });
+  const handleAddToCart = (item) => {
+    const isLoggedIn = localStorage.getItem("userId");
+    if (!isLoggedIn) {
+      navigate("/login");
+      return;
     }
-
-    await axios.patch(`http://localhost:3000/users/${userId}`, {
-      cart: updatedCart,
-    });
-
-    // ✅ also update context
-    setCartItems(updatedCart);
+    addToCart(item);
   };
-  const filteredBooks = listing
-    .filter(
+
+  let result = [...listing]; // copy of all books
+  //  Search
+  if (search) {
+    result = result.filter(
       (item) =>
         item.title.toLowerCase().includes(search.toLowerCase()) ||
         item.author.toLowerCase().includes(search.toLowerCase())
-    )
-    .filter((item) =>
-      selectedType === "all" ? true : item.type === selectedType
-    )
-    .sort((a, b) => {
-      if (sortBy === "price-low") return a.price - b.price;
-      if (sortBy === "price-high") return b.price - a.price;
-      if (sortBy === "title") return a.title.localeCompare(b.title);
-      return b.id - a.id;
-    });
+    );
+  }
+
+  // filter
+  if (selectedType !== "all") {
+    result = result.filter((item) => item.type === selectedType);
+  }
+
+  // Sorting
+  if (sortBy === "price-low") {
+    result.sort((a, b) => a.price - b.price);
+  } else if (sortBy === "price-high") {
+    result.sort((a, b) => b.price - a.price);
+  } else if (sortBy === "title") {
+    result.sort((a, b) => a.title.localeCompare(b.title));
+  } else {
+    result.sort((a, b) => b.id - a.id); // newest first
+  }
+
+  const filteredBooks = result;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-blue-50 py-8 px-4">

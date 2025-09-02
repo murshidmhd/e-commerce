@@ -30,7 +30,6 @@ const ListingsPreview = () => {
             to={`/listings/${item.id}`}
             className="flex flex-col h-full border rounded-lg overflow-hidden hover:shadow-lg transition-shadow bg-white"
           >
-            {/* 1. Fixed aspect ratio box for all covers */}
             <div className="w-full h-90 aspect-[3/2] overflow-hidden">
               <img
                 src={item.imageUrl}
@@ -38,13 +37,13 @@ const ListingsPreview = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            {/* 2. Make the text section flex so footer sticks down */}
+
             <div className="flex flex-col flex-1 p-4">
               <div>
                 <h3 className="text-lg font-semibold">{item.title}</h3>
                 <p className="text-sm text-gray-600">{item.author}</p>
               </div>
-              {/* 3. Footer always at bottom */}
+
               <div className="mt-auto flex items-center justify-between text-xs text-gray-500">
                 <div>
                   {item.type === "sale" && (
@@ -67,12 +66,14 @@ const ListingsPreview = () => {
           </Link>
         ))}
       </div>
-      <div className="text-center mt-6">
+      <div className="text-center mt-8">
         <Link
           to="/shop"
-          className="inline-block bg-cyan-400 text-white px-5 py-2 rounded hover:bg-cyan-500"
+          className="inline-block relative overflow-hidden bg-cyan-500 text-white font-semibold px-8 py-4 rounded-lg group"
         >
-          View All Listings
+          <span className="relative z-10">View All Listings</span>
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
         </Link>
       </div>
     </section>

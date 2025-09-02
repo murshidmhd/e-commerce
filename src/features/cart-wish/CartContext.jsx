@@ -1,102 +1,86 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
+import { createContext, useState, useContext, useEffect } from "react";
 
 const CartContext = createContext();
 
-export const CartProvider = ({ children }) => {
+function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const userId = localStorage.getItem("userId");
-
-  // ✅ Fetch cart on login/page load
   useEffect(() => {
     if (userId) {
       axios
         .get(`http://localhost:3000/users/${userId}`)
         .then((res) => setCartItems(res.data.cart || []))
-        .catch((err) => console.error("Error fetching cart:", err));
+        .catch((err) => console.error("error fetching cart ", err));
     }
   }, [userId]);
 
-  // ✅ Add item to cart
-  const addToCart = async (product) => {
-    if (!userId) return;
+  const saveCartToServer = async (updatedCart) => {
+    try {
+      await axios.patch(`http://localhost:3000/users/${userId}`, {
+        cart: updatedCart,
+      });
+    } catch (err) {
+      console.error("error saving cart:", err);
+    }
+  };
 
-    const exists = cartItems.find((item) => item.itemId === product.id);
-    let updated;
+  const addToCart = async (product) => {
+    let updatedCart;
+    const exists = cartItems.find((item) => item.id === product.id);
 
     if (exists) {
-      updated = cartItems.map((item) =>
-        item.itemId === product.id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
+      updatedCart = cartItems.map((item) =>
+        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
       );
     } else {
-      updated = [
-        ...cartItems,
-        {
-          itemId: product.id,
-          title: product.title,
-          price: product.price,
-          quantity: 1,
-        },
-      ];
+      updatedCart = [...cartItems, { ...product, quantity: 1 }];
     }
 
-    setCartItems(updated);
-    await axios.patch(`http://localhost:3000/users/${userId}`, {
-      cart: updated,
-    });
+    setCartItems(updatedCart);
+    await saveCartToServer(updatedCart);
   };
-
-  // ✅ Remove item
-  const removeFromCart = async (id) => {
-    if (!userId) return;
-    const updated = cartItems.filter((item) => item.itemId !== id);
-    setCartItems(updated);
-    await axios.patch(`http://localhost:3000/users/${userId}`, {
-      cart: updated,
-    });
+  const removeFromCart = async (product) => {
+    const updatedCart = cartItems.filter((item) => item.id !== product.id);
+    setCartItems(updatedCart);
+    await saveCartToServer(updatedCart);
   };
-
-  // ✅ Update quantity
   const updateQuantity = async (id, newQty) => {
-    if (!userId) return;
-
+    let updatedCart;
     if (newQty <= 0) {
-      return removeFromCart(id);
+      updatedCart = cartItems.filter((item) => item.id !== id);
+    } else {
+      updatedCart = cartItems.map((item) =>
+        item.id === id ? { ...item, quantity: newQty } : item
+      );
     }
 
-    const updated = cartItems.map((item) =>
-      item.itemId === id ? { ...item, quantity: newQty } : item
-    );
-    setCartItems(updated);
-
-    await axios.patch(`http://localhost:3000/users/${userId}`, {
-      cart: updated,
-    });
+    setCartItems(updatedCart);
+    await saveCartToServer(updatedCart);
   };
-
-  // ✅ Clear cart
   const clearCart = async () => {
-    if (!userId) return;
     setCartItems([]);
-    await axios.patch(`http://localhost:3000/users/${userId}`, { cart: [] });
+    await saveCartToServer([]);
   };
 
   return (
     <CartContext.Provider
       value={{
         cartItems,
-        setCartItems,
         addToCart,
-        updateQuantity,
         removeFromCart,
+        updateQuantity,
         clearCart,
       }}
     >
       {children}
     </CartContext.Provider>
   );
-};
+}
+
+export { CartProvider, CartContext };
 
 export const useCart = () => useContext(CartContext);
+
+/* this is for we dont right in all section like this 
+const {cartItems , addToCart} = useContext(CartContext);*/

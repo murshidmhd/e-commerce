@@ -39,7 +39,6 @@ function Navbar() {
     navigate("/login");
   };
 
- 
   return (
     <>
       <nav
@@ -86,7 +85,7 @@ function Navbar() {
               </Link>
             </div>
 
-            {/* Right icons group */}
+            {/* icon */}
             <div className="flex items-center space-x-5">
               {/* Wishlist */}
               <Link
@@ -112,7 +111,7 @@ function Navbar() {
                 )}
               </Link>
 
-              {/* Login or Logout */}
+              {/* Login or Logout  */} 
               {!isLoggedIn ? (
                 <Link
                   to="/login"
@@ -134,6 +133,13 @@ function Navbar() {
                     >
                       Logout
                     </button>
+                    <Link
+                      className="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 transition-colors"
+                      to={"/profile"}
+                    >
+                      {" "}
+                      Profile{" "}
+                    </Link>
                   </div>
                 </div>
               )}
@@ -149,3 +155,4 @@ function Navbar() {
 }
 
 export default Navbar;
+

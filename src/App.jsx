@@ -11,6 +11,7 @@ import Cart from "./features/cart-wish/Cart";
 import ProtectedRoute from "./features/auth/PortectedRoute";
 import Wishlist from "./features/cart-wish/Wish";
 import OrderPage from "./features/products/OrderPage";
+import Profile from "./features/auth/Profile";
 function App() {
   const location = useLocation();
 
@@ -27,7 +28,7 @@ function App() {
         <Route path="/" element={<SlideShow />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profile" ></Route>
+        <Route path="/profile" element={<Profile />}></Route>
         <Route
           path="/cart"
           element={

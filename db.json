@@ -7,37 +7,65 @@
       "password": "786786ms",
       "cart": [
         {
-          "itemId": "12",
-          "title": "Harry Potter and the Sorcerer’s Stone",
-          "price": 250,
-          "quantity": 1
-        },
-        {
-          "itemId": "3",
-          "title": "The Hobbit",
-          "price": 250,
-          "quantity": 1
-        },
-        {
           "itemId": "11",
           "title": "The Lean Startup",
           "price": 275,
-          "quantity": 12
+          "quantity": 10
         },
         {
-          "itemId": "10",
-          "title": "The Power of Habit",
-          "price": 250,
-          "quantity": 16
+          "id": "11",
+          "title": "The Lean Startup",
+          "author": "Eric Ries",
+          "type": "bogo",
+          "price": 275,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg",
+          "quantity": 17
         },
         {
-          "itemId": "4",
-          "title": "Brave New World",
-          "price": 0,
-          "quantity": 3
+          "id": "2",
+          "title": "The Catcher in the Rye",
+          "author": "J.D. Salinger",
+          "type": "sale",
+          "price": 120,
+          "condition": "Acceptable",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81OthjkJBuL.jpg",
+          "quantity": 5
         }
       ],
-      "wishlist": []
+      "wishlist": [
+        {
+          "id": 1756729473418,
+          "name": "Example Product"
+        },
+        {
+          "id": "7",
+          "title": "Atomic Habits",
+          "author": "James Clear",
+          "type": "bogo",
+          "price": 299,
+          "condition": "New",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51-nXsSRfZL._SX329_BO1,204,203,200_.jpg"
+        },
+        {
+          "id": "10",
+          "title": "The Power of Habit",
+          "author": "Charles Duhigg",
+          "type": "bogo",
+          "price": 250,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg"
+        },
+        {
+          "id": "11",
+          "title": "The Lean Startup",
+          "author": "Eric Ries",
+          "type": "bogo",
+          "price": 275,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg"
+        }
+      ]
     },
     {
       "id": "d608",
@@ -78,6 +106,51 @@
           "quantity": 7
         }
       ]
+    },
+    {
+      "id": "8ddf",
+      "name": "arifa",
+      "email": "arifa@gmail.com",
+      "password": "12345",
+      "cart": [
+        {
+          "itemId": "12",
+          "title": "Harry Potter and the Sorcerer’s Stone",
+          "price": 250,
+          "quantity": 1
+        }
+      ],
+      "wishlist": []
+    },
+    {
+      "id": "67ef",
+      "name": "shahma",
+      "email": "shahma@gmail.com",
+      "password": "12345",
+      "cart": [
+        {
+          "id": "10",
+          "title": "The Power of Habit",
+          "author": "Charles Duhigg",
+          "type": "bogo",
+          "price": 250,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg",
+          "quantity": 2
+        }
+      ],
+      "wishlist": [
+        {
+          "id": "10",
+          "title": "The Power of Habit",
+          "author": "Charles Duhigg",
+          "type": "bogo",
+          "price": 250,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg"
+        }
+      ],
+      "order": []
     }
   ],
   "listings": [

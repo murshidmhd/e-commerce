@@ -22,6 +22,7 @@ function Login() {
       const response = await axios.get(
         `http://localhost:3000/users?email=${email}`
       );
+
       const users = response.data;
 
       if (users.length === 0 || users[0].password !== password) {
@@ -29,15 +30,14 @@ function Login() {
         return;
       }
 
-      // ✅ Store new session
+      // Store
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("userId", users[0].id);
 
-      // ✅ Clear old cart from localStorage
       localStorage.removeItem("cart");
       localStorage.removeItem("wishlist");
 
-      // ✅ Optionally: fetch this user's cart from server immediately
+      //fetch this user's cart
       const userData = await axios.get(
         `http://localhost:3000/users/${users[0].id}`
       );

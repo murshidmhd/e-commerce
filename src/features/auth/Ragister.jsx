@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Register() {
@@ -9,6 +9,9 @@ function Register() {
   const [error, setError] = useState("");
   const cart = [];
   const wishlist = [];
+  const order = [];
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,10 +21,11 @@ function Register() {
       return;
     }
     try {
-      const newUser = { name, email, password, cart, wishlist };
+      const newUser = { name, email, password, cart, wishlist, order };
       const response = await axios.post("http://localhost:3000/users", newUser);
       console.log("user registered", response.data);
       alert("registered");
+      navigate("/login");
     } catch (e) {
       setError("Registration failed");
       console.log(e);
