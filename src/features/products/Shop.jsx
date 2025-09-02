@@ -66,7 +66,7 @@ function Shop() {
     addToCart(item);
   };
 
-  let result = [...listing]; // copy of all books
+  let result = [...listing];  
   //  Search
   if (search) {
     result = result.filter(

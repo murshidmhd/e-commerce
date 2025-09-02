@@ -12,6 +12,8 @@ import ProtectedRoute from "./features/auth/PortectedRoute";
 import Wishlist from "./features/cart-wish/Wish";
 import OrderPage from "./features/products/OrderPage";
 import Profile from "./features/auth/Profile";
+import OrderDetails from "./features/products/OrderDetails";
+import ViewDetails from "./features/products/ViewDetails"
 function App() {
   const location = useLocation();
 
@@ -39,6 +41,8 @@ function App() {
         ></Route>
         <Route path="/wishlist" element={<Wishlist />}></Route>
         <Route path="/order" element={<OrderPage />} />
+        <Route path="/order/:id" element={<ViewDetails />}></Route>
+        <Route path="/orderdetails" element={<OrderDetails />}></Route>
       </Routes>
     </>
   );

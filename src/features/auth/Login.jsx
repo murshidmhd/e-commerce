@@ -30,22 +30,20 @@ function Login() {
         return;
       }
 
-      // Store
+      const user = users[0]; // ✅ fix added
+
+      // 🔹 Clear old localStorage
+      localStorage.clear();
+
+      // 🔹 Store fresh user info
       localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("userId", users[0].id);
+      localStorage.setItem("userId", user.id);
+      localStorage.setItem("user", JSON.stringify(user)); // full user
 
-      localStorage.removeItem("cart");
-      localStorage.removeItem("wishlist");
-
-      //fetch this user's cart
-      const userData = await axios.get(
-        `http://localhost:3000/users/${users[0].id}`
-      );
-      localStorage.setItem("cart", JSON.stringify(userData.data.cart || []));
-      localStorage.setItem(
-        "wishlist",
-        JSON.stringify(userData.data.wishlist || [])
-      );
+      // 🔹 Store arrays separately
+      localStorage.setItem("cart", JSON.stringify(user.cart || []));
+      localStorage.setItem("wishlist", JSON.stringify(user.wishlist || []));
+      localStorage.setItem("order", JSON.stringify(user.order || []));
 
       navigate("/");
     } catch (err) {

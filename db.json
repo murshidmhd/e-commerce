@@ -1,17 +1,21 @@
 {
   "users": [
     {
-      "id": "7fe1",
+      "id": "c079",
       "name": "murshid",
       "email": "murshid@gmail.com",
-      "password": "786786ms",
-      "cart": [
-        {
-          "itemId": "11",
-          "title": "The Lean Startup",
-          "price": 275,
-          "quantity": 10
-        },
+      "password": "123456",
+      "cart": [],
+      "wishlist": [],
+      "order": []
+    },
+    {
+      "id": "0d70",
+      "name": "anu",
+      "email": "anu@gmail.com",
+      "password": "12345",
+      "cart": [],
+      "wishlist": [
         {
           "id": "11",
           "title": "The Lean Startup",
@@ -19,24 +23,7 @@
           "type": "bogo",
           "price": 275,
           "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg",
-          "quantity": 17
-        },
-        {
-          "id": "2",
-          "title": "The Catcher in the Rye",
-          "author": "J.D. Salinger",
-          "type": "sale",
-          "price": 120,
-          "condition": "Acceptable",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81OthjkJBuL.jpg",
-          "quantity": 5
-        }
-      ],
-      "wishlist": [
-        {
-          "id": 1756729473418,
-          "name": "Example Product"
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg"
         },
         {
           "id": "7",
@@ -55,79 +42,9 @@
           "price": 250,
           "condition": "Good",
           "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg"
-        },
-        {
-          "id": "11",
-          "title": "The Lean Startup",
-          "author": "Eric Ries",
-          "type": "bogo",
-          "price": 275,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg"
-        }
-      ]
-    },
-    {
-      "id": "d608",
-      "name": "anu",
-      "email": "anu@gmail.com",
-      "password": "786786ms",
-      "cart": [
-        {
-          "itemId": "11",
-          "title": "The Lean Startup",
-          "price": 275,
-          "quantity": 7
-        },
-        {
-          "itemId": "7",
-          "title": "Atomic Habits",
-          "price": 299,
-          "quantity": 4
-        }
-      ]
-    },
-    {
-      "id": "deb2",
-      "name": "favas  ",
-      "email": "favas@gmail.com",
-      "password": "123456",
-      "cart": [
-        {
-          "itemId": "11",
-          "title": "The Lean Startup",
-          "price": 275,
-          "quantity": 5
-        },
-        {
-          "itemId": "12",
-          "title": "Harry Potter and the Sorcerer’s Stone",
-          "price": 250,
-          "quantity": 7
-        }
-      ]
-    },
-    {
-      "id": "8ddf",
-      "name": "arifa",
-      "email": "arifa@gmail.com",
-      "password": "12345",
-      "cart": [
-        {
-          "itemId": "12",
-          "title": "Harry Potter and the Sorcerer’s Stone",
-          "price": 250,
-          "quantity": 1
         }
       ],
-      "wishlist": []
-    },
-    {
-      "id": "67ef",
-      "name": "shahma",
-      "email": "shahma@gmail.com",
-      "password": "12345",
-      "cart": [
+      "order": [
         {
           "id": "10",
           "title": "The Power of Habit",
@@ -136,10 +53,8 @@
           "price": 250,
           "condition": "Good",
           "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg",
-          "quantity": 2
-        }
-      ],
-      "wishlist": [
+          "quantity": 6
+        },
         {
           "id": "10",
           "title": "The Power of Habit",
@@ -147,10 +62,70 @@
           "type": "bogo",
           "price": 250,
           "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg"
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg",
+          "quantity": 1
+        },
+        {
+          "id": "10",
+          "title": "The Power of Habit",
+          "author": "Charles Duhigg",
+          "type": "bogo",
+          "price": 250,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg",
+          "quantity": 1
+        },
+        {
+          "id": "6",
+          "title": "Educated",
+          "author": "Tara Westover",
+          "type": "donation",
+          "price": 0,
+          "condition": "Like New",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81WojUxbbFL.jpg",
+          "quantity": 1
+        },
+        {
+          "id": "10",
+          "title": "The Power of Habit",
+          "author": "Charles Duhigg",
+          "type": "bogo",
+          "price": 250,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg",
+          "quantity": 6
+        },
+        {
+          "id": "10",
+          "title": "The Power of Habit",
+          "author": "Charles Duhigg",
+          "type": "bogo",
+          "price": 250,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg",
+          "quantity": 3
+        },
+        {
+          "id": "4",
+          "title": "Brave New World",
+          "author": "Aldous Huxley",
+          "type": "donation",
+          "price": 0,
+          "condition": "Like New",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg",
+          "quantity": 1
+        },
+        {
+          "id": "11",
+          "title": "The Lean Startup",
+          "author": "Eric Ries",
+          "type": "bogo",
+          "price": 275,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg",
+          "quantity": 1
         }
-      ],
-      "order": []
+      ]
     }
   ],
   "listings": [

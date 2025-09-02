@@ -1,8 +1,37 @@
 import React from "react";
 import { useCart } from "./CartContext";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
   const { cartItems, removeFromCart, updateQuantity, clearCart } = useCart();
+
+  const navigate = useNavigate();
+
+  const userId = localStorage.getItem("userId");
+  const placeOrder = async () => {
+    try {
+      const res = await axios.get(`http://localhost:3000/users/${userId}`);
+      const user = res.data;
+
+      const updateUser = {
+        ...user,
+        order: [...user.order, ...cartItems],
+        cart: [],
+      };
+
+      await axios.put(`http://localhost:3000/users/${userId}`, updateUser);
+
+      clearCart();
+
+      navigate("/orderdetails");
+
+      alert("✅ Order placed successfully!");
+    } catch (err) {
+      console.error("Erro placing order", err);
+      alert("Something went wrong while placing order");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-gray-50 p-6">
@@ -20,9 +49,14 @@ function Cart() {
                 key={item.id}
                 className="bg-white rounded-2xl shadow-md p-4 flex flex-col hover:shadow-xl transition"
               >
-                <div className="w-full h-40 bg-gray-200 rounded-lg mb-4 flex items-center justify-center text-gray-400 text-lg">
-                  Image
+                <div className="w-full h-full mb-4">
+                  <img
+                    src={item.imageUrl}
+                    alt={item.name}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
                 </div>
+
                 <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center">
                   {item.name}
                 </h3>
@@ -71,7 +105,7 @@ function Cart() {
 
             {/* Place Order Button */}
             <button
-              onClick={() => alert("Order placed successfully!")}
+              onClick={placeOrder}
               className="px-6 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition font-medium"
             >
               Place Order
