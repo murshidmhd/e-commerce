@@ -7,8 +7,8 @@ import {
   Bars3Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { useCart } from "../../features/cart-wish/CartContext";
-import { useWishlist } from "../../features/cart-wish/WishListContext";
+import { useCart } from "../../features/context/CartContext";
+import { useWishlist } from "../../features/context/WishListContext";
 
 function Navbar() {
   const [cartCount, setCartCount] = useState(3);

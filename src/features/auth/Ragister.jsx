@@ -10,6 +10,7 @@ function Register() {
   const cart = [];
   const wishlist = [];
   const order = [];
+  // const role
 
   const navigate = useNavigate();
 
@@ -21,7 +22,15 @@ function Register() {
       return;
     }
     try {
-      const newUser = { name, email, password, cart, wishlist, order };
+      const newUser = {
+        name,
+        email,
+        password,
+        role: "user",
+        cart,
+        wishlist,
+        order,
+      };
       const response = await axios.post("http://localhost:3000/users", newUser);
       console.log("user registered", response.data);
       alert("registered");

@@ -1,36 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useCart } from "../cart-wish/CartContext";
+import { useCart } from "../context/CartContext";
+import toast from "react-hot-toast";
 
 function OrderDetails() {
   const { cartItems, clearCart } = useCart();
   const navigate = useNavigate();
 
-  const userId = localStorage.getItem("userId");
 
   const handlePlaceOrder = async () => {
-    try {
-      const res = await axios.get(`http://localhost:3000/users/${userId}`);
-      const user = res.data;
-
-      const updateUser = {
-        ...user,
-        order: [...user.order, ...cartItems],
-        cart: [],
-      };
-
-      await axios.put(`http://localhost:3000/users/${userId}`, updateUser);
-
-      clearCart();
-
-      navigate("/");
-
-      alert("✅ Order placed successfully!");
-    } catch (err) {
-      console.error("Erro placing order", err);
-      alert("Something went wrong while placing order");
-    }
+    navigate("/paymentpage")
   };
   useState();
   return (

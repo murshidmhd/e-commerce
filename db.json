@@ -7,145 +7,24 @@
       "password": "123456",
       "cart": [],
       "wishlist": [],
-      "order": []
+      "order": [],
+      "blocked": false
     },
     {
       "id": "0d70",
       "name": "anu",
       "email": "anu@gmail.com",
       "password": "12345",
-      "cart": [
-        {
-          "id": "6",
-          "title": "Educated",
-          "author": "Tara Westover",
-          "type": "donation",
-          "price": 0,
-          "condition": "Like New",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81WojUxbbFL.jpg",
-          "quantity": 11
-        }
-      ],
+      "cart": [],
       "wishlist": [
         {
-          "id": "10",
-          "title": "The Power of Habit",
-          "author": "Charles Duhigg",
+          "id": "3",
+          "title": "The Hobbit",
+          "author": "J.R.R. Tolkien",
           "type": "bogo",
-          "price": 250,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg"
-        },
-        {
-          "id": "11",
-          "title": "The Lean Startup",
-          "author": "Eric Ries",
-          "type": "bogo",
-          "price": 275,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg"
-        }
-      ],
-      "order": [
-        {
-          "id": "10",
-          "title": "The Power of Habit",
-          "author": "Charles Duhigg",
-          "type": "bogo",
-          "price": 250,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg",
-          "quantity": 6
-        },
-        {
-          "id": "10",
-          "title": "The Power of Habit",
-          "author": "Charles Duhigg",
-          "type": "bogo",
-          "price": 250,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "10",
-          "title": "The Power of Habit",
-          "author": "Charles Duhigg",
-          "type": "bogo",
-          "price": 250,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "6",
-          "title": "Educated",
-          "author": "Tara Westover",
-          "type": "donation",
-          "price": 0,
-          "condition": "Like New",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81WojUxbbFL.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "10",
-          "title": "The Power of Habit",
-          "author": "Charles Duhigg",
-          "type": "bogo",
-          "price": 250,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg",
-          "quantity": 6
-        },
-        {
-          "id": "10",
-          "title": "The Power of Habit",
-          "author": "Charles Duhigg",
-          "type": "bogo",
-          "price": 250,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg",
-          "quantity": 3
-        },
-        {
-          "id": "4",
-          "title": "Brave New World",
-          "author": "Aldous Huxley",
-          "type": "donation",
-          "price": 0,
-          "condition": "Like New",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "11",
-          "title": "The Lean Startup",
-          "author": "Eric Ries",
-          "type": "bogo",
-          "price": 275,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "7",
-          "title": "Atomic Habits",
-          "author": "James Clear",
-          "type": "bogo",
-          "price": 299,
-          "condition": "New",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51-nXsSRfZL._SX329_BO1,204,203,200_.jpg",
-          "quantity": 9
-        },
-        {
-          "id": "12",
-          "title": "Harry Potter and the Sorcerer’s Stone",
-          "author": "J.K. Rowling",
-          "type": "sale",
           "price": 250,
           "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81YOuOGFCJL.jpg",
-          "quantity": 4
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/91b0C2YNSrL.jpg"
         },
         {
           "id": "2",
@@ -154,7 +33,68 @@
           "type": "sale",
           "price": 120,
           "condition": "Acceptable",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81OthjkJBuL.jpg",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81OthjkJBuL.jpg"
+        }
+      ],
+      "order": [
+        {
+          "id": "11",
+          "title": "The Lean Startup",
+          "author": "Eric Ries",
+          "type": "bogo",
+          "price": 275,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg",
+          "quantity": 1
+        },
+        {
+          "id": "11",
+          "title": "The Lean Startup",
+          "author": "Eric Ries",
+          "type": "bogo",
+          "price": 275,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg",
+          "quantity": 1
+        },
+        {
+          "id": "10",
+          "title": "The Power of Habit",
+          "author": "Charles Duhigg",
+          "type": "bogo",
+          "price": 250,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg",
+          "quantity": 1
+        },
+        {
+          "id": "10",
+          "title": "The Power of Habit",
+          "author": "Charles Duhigg",
+          "type": "bogo",
+          "price": 250,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg",
+          "quantity": 1
+        },
+        {
+          "id": "11",
+          "title": "The Lean Startup",
+          "author": "Eric Ries",
+          "type": "bogo",
+          "price": 275,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg",
+          "quantity": 1
+        },
+        {
+          "id": "7",
+          "title": "Atomic Habits",
+          "author": "James Clear",
+          "type": "bogo",
+          "price": 299,
+          "condition": "New",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51-nXsSRfZL._SX329_BO1,204,203,200_.jpg",
           "quantity": 1
         },
         {
@@ -168,46 +108,27 @@
           "quantity": 1
         },
         {
-          "id": "12",
-          "title": "Harry Potter and the Sorcerer’s Stone",
-          "author": "J.K. Rowling",
+          "id": "5",
+          "title": "The Alchemist",
+          "author": "Paulo Coelho",
           "type": "sale",
-          "price": 250,
+          "price": 220,
           "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81YOuOGFCJL.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "7",
-          "title": "Atomic Habits",
-          "author": "James Clear",
-          "type": "bogo",
-          "price": 299,
-          "condition": "New",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51-nXsSRfZL._SX329_BO1,204,203,200_.jpg",
-          "quantity": 4
-        },
-        {
-          "id": "11",
-          "title": "The Lean Startup",
-          "author": "Eric Ries",
-          "type": "bogo",
-          "price": 275,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg",
-          "quantity": 2
-        },
-        {
-          "id": "10",
-          "title": "The Power of Habit",
-          "author": "Charles Duhigg",
-          "type": "bogo",
-          "price": 250,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51Z0nLAfLmL._SX331_BO1,204,203,200_.jpg",
           "quantity": 1
         }
-      ]
+      ],
+      "blocked": false
+    },
+    {
+      "id": "ae4a",
+      "name": "favas",
+      "email": "favas@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "cart": [],
+      "wishlist": [],
+      "order": []
     }
   ],
   "listings": [
@@ -318,6 +239,188 @@
       "price": 250,
       "condition": "Very Good",
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81YOuOGFCJL.jpg"
+    },
+
+    {
+      "id": "13",
+      "title": "Sapiens: A Brief History of Humankind",
+      "author": "Yuval Noah Harari",
+      "type": "sale",
+      "price": 300,
+      "condition": "Very Good",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/713jIoMO3UL.jpg"
+    },
+
+    {
+      "id": "22",
+      "title": "Where the Crawdads Sing",
+      "author": "Delia Owens",
+      "type": "bogo",
+      "price": 260,
+      "condition": "Like New",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81O2ZjVl37L.jpg"
+    },
+    {
+      "id": "23",
+      "title": "The Silent Patient",
+      "author": "Alex Michaelides",
+      "type": "sale",
+      "price": 170,
+      "condition": "Good",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81t2CVWEsUL.jpg"
+    },
+    {
+      "id": "24",
+      "title": "Normal People",
+      "author": "Sally Rooney",
+      "type": "donation",
+      "price": 0,
+      "condition": "Like New",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81CbxYatpJL.jpg"
+    },
+    {
+      "id": "25",
+      "title": "The Midnight Library",
+      "author": "Matt Haig",
+      "type": "sale",
+      "price": 210,
+      "condition": "Very Good",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81YzHKeH79L.jpg"
+    },
+    {
+      "id": "26",
+      "title": "Thinking, Fast and Slow",
+      "author": "Daniel Kahneman",
+      "type": "bogo",
+      "price": 290,
+      "condition": "Good",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61fdrEuPJwL._SX329_BO1,204,203,200_.jpg"
+    },
+    {
+      "id": "27",
+      "title": "The Handmaid's Tale",
+      "author": "Margaret Atwood",
+      "type": "sale",
+      "price": 195,
+      "condition": "Acceptable",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61su9wWiwyL.jpg"
+    },
+    {
+      "id": "28",
+      "title": "Gone Girl",
+      "author": "Gillian Flynn",
+      "type": "bogo",
+      "price": 225,
+      "condition": "Very Good",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81O3C6AcOWL.jpg"
+    },
+    {
+      "id": "29",
+      "title": "The Girl with the Dragon Tattoo",
+      "author": "Stieg Larsson",
+      "type": "donation",
+      "price": 0,
+      "condition": "Good",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg"
+    },
+    {
+      "id": "30",
+      "title": "Educated",
+      "author": "Tara Westover",
+      "type": "sale",
+      "price": 230,
+      "condition": "Like New",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81WojUxbbFL.jpg"
+    },
+    {
+      "id": "31",
+      "title": "The Four Agreements",
+      "author": "Don Miguel Ruiz",
+      "type": "bogo",
+      "price": 160,
+      "condition": "Good",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61jU5VPKG-L._SX324_BO1,204,203,200_.jpg"
+    },
+    {
+      "id": "32",
+      "title": "The Outsiders",
+      "author": "S.E. Hinton",
+      "type": "sale",
+      "price": 140,
+      "condition": "Acceptable",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81h7UkaLkqL.jpg"
+    },
+    {
+      "id": "33",
+      "title": "The Fault in Our Stars",
+      "author": "John Green",
+      "type": "donation",
+      "price": 0,
+      "condition": "Very Good",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/817tHNcyAgL.jpg"
+    },
+    {
+      "id": "34",
+      "title": "Animal Farm",
+      "author": "George Orwell",
+      "type": "sale",
+      "price": 130,
+      "condition": "Good",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/91OJA35-zqL.jpg"
+    },
+    {
+      "id": "35",
+      "title": "The Da Vinci Code",
+      "author": "Dan Brown",
+      "type": "bogo",
+      "price": 185,
+      "condition": "Very Good",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/815WORuYMML.jpg"
+    },
+    {
+      "id": "36",
+      "title": "Life of Pi",
+      "author": "Yann Martel",
+      "type": "sale",
+      "price": 175,
+      "condition": "Good",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71dBEd-caoL.jpg"
+    },
+    {
+      "id": "37",
+      "title": "The Hunger Games",
+      "author": "Suzanne Collins",
+      "type": "donation",
+      "price": 0,
+      "condition": "Acceptable",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81WZcOGvR9L.jpg"
+    },
+    {
+      "id": "38",
+      "title": "Can't Hurt Me",
+      "author": "David Goggins",
+      "type": "bogo",
+      "price": 270,
+      "condition": "New",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81DEOApBJwL.jpg"
+    },
+    {
+      "id": "39",
+      "title": "Rich Dad Poor Dad",
+      "author": "Robert T. Kiyosaki",
+      "type": "sale",
+      "price": 200,
+      "condition": "Very Good",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81bsw6fnUiL.jpg"
+    },
+    {
+      "id": "40",
+      "title": "The Giver",
+      "author": "Lois Lowry",
+      "type": "donation",
+      "price": 0,
+      "condition": "Good",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71+WftKSABL.jpg"
     }
   ]
 }

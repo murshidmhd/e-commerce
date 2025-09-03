@@ -4,9 +4,17 @@ import { Link } from "react-router-dom";
 
 function OrderPage() {
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
+
+    if (!userId) {
+      setError("User not logged in");
+      return;
+    }
+    setLoading(true);
     axios
       .get(`http://localhost:3000/users/${userId}`)
       .then((res) => {
@@ -14,6 +22,10 @@ function OrderPage() {
       })
       .catch((err) => {
         console.error("Error fetching orders:", err);
+        setError("Something went wrong while fetching orders");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
