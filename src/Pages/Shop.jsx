@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useCart } from "../cart-wish/CartContext";
+import { useCart } from "../features/cart-wish/CartContext";
 import { useNavigate } from "react-router-dom";
-import { useWishlist } from "../cart-wish/WishListContext";
+import { useWishlist } from "../features/cart-wish/WishListContext";
 
 function Shop() {
   const { addToCart } = useCart();

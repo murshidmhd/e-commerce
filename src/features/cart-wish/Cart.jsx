@@ -1,29 +1,21 @@
 import React from "react";
 import { useCart } from "./CartContext";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Cart() {
-  const { cartItems, removeFromCart, updateQuantity, clearCart } = useCart();
+  const {
+    cartItems,
+    removeFromCart,
+    updateQuantity,
+    clearCart,
+    error,
+    loading,
+  } = useCart();
 
   const navigate = useNavigate();
 
-  const userId = localStorage.getItem("userId");
   const placeOrder = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/users/${userId}`);
-      const user = res.data;
-
-      const updateUser = {
-        ...user,
-        order: [...user.order, ...cartItems],
-        cart: [],
-      };
-
-      await axios.put(`http://localhost:3000/users/${userId}`, updateUser);
-
-      clearCart();
-
       navigate("/orderdetails");
 
       alert("✅ Order placed successfully!");
@@ -33,6 +25,9 @@ function Cart() {
     }
   };
 
+  if (loading) return <div className="text-center py-10">Loading…</div>;
+  if (error)
+    return <div className="text-center py-10 text-red-500">{error}</div>;
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-gray-50 p-6">
       <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg p-6">

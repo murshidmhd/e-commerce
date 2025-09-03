@@ -5,13 +5,27 @@ const CartContext = createContext();
 
 function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const userId = localStorage.getItem("userId");
+  
   useEffect(() => {
     if (userId) {
+      setLoading(true);
+      setError(null);
+
       axios
         .get(`http://localhost:3000/users/${userId}`)
-        .then((res) => setCartItems(res.data.cart || []))
-        .catch((err) => console.error("error fetching cart ", err));
+        .then((res) => {
+          setCartItems(res.data.cart || []);
+        })
+        .catch((err) => {
+          console.error("Error fetching cart: ", err);
+          setError("Failed to load cart items. Please try again.");
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
   }, [userId]);
 
@@ -22,6 +36,7 @@ function CartProvider({ children }) {
       });
     } catch (err) {
       console.error("error saving cart:", err);
+      setError(err);
     }
   };
 
@@ -71,6 +86,8 @@ function CartProvider({ children }) {
         removeFromCart,
         updateQuantity,
         clearCart,
+        loading,
+        error,
       }}
     >
       {children}
@@ -82,5 +99,5 @@ export { CartProvider, CartContext };
 
 export const useCart = () => useContext(CartContext);
 
-/* this is for we dont right in all section like this 
+/* this is for we dont write in all section like this 
 const {cartItems , addToCart} = useContext(CartContext);*/

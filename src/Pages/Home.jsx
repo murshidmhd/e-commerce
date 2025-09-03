@@ -1,13 +1,14 @@
 import React from "react";
 // import SlideShow from "./Slide";
-import ImageSlider from "./ImageSlider";
-import ListingsPreview from "./ListingsPreview";
-import Footer from "./Footer";
+import ImageSlider from "../components /ImageSlider";
+import ListingsPreview from "../components /ListingsPreview";
+import Footer from "../components /layout/Footer";
 const HomePage = () => {
   return (
     <>
       <ImageSlider />
       <ListingsPreview />
+      
       <Footer />
     </>
   );

@@ -2,10 +2,10 @@ import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Login from "./features/auth/Login";
 import Register from "./features/auth/Ragister";
-import Navbar from "./features/auth/Navbar";
+import Navbar from "./components /layout/Navbar";
 // import HomePage from "./components /Home";
-import SlideShow from "./components /Home";
-import Shop from "./features/products/Shop";
+import SlideShow from "./Pages/Home";
+import Shop from "./Pages/Shop";
 import AddListing from "./features/products/AddListing";
 import Cart from "./features/cart-wish/Cart";
 import ProtectedRoute from "./features/auth/PortectedRoute";
@@ -36,6 +36,7 @@ function App() {
           element={
             <ProtectedRoute>
               <Cart />
+              
             </ProtectedRoute>
           }
         ></Route>
