@@ -11,14 +11,14 @@ import { useCart } from "../../features/context/CartContext";
 import { useWishlist } from "../../features/context/WishListContext";
 
 function Navbar() {
-  const [cartCount, setCartCount] = useState(3);
+  const [cartCount, setCartCount] = useState(2);
 
   const [isScrolled, setIsScrolled] = useState(false);
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const navigate = useNavigate();
 
-  const { setCartItems } = useCart();
-  const { setWishlist } = useWishlist();
+  const { setCartItems, cartItems } = useCart();
+  const { setWishlist ,wishitem} = useWishlist();
 
   // Detect scroll for navbar styling
   useEffect(() => {
@@ -39,6 +39,21 @@ function Navbar() {
     navigate("/login");
   };
 
+  // const userId = localStorage.getItem("userId");
+  // useEffect(() => {
+  //   const response = axios
+  //     .get(`http://localhost:3000/users/${userId}`)
+  //     .then((res) => setCartCount(res.data.cart.length))
+  //     .then(console.log(cartCount))
+  //     .catch(() => console.log("fetching issue "));
+  //   // console.log(res);
+  // });
+
+  // console.log(cartItems);
+
+  useEffect(() => {
+    setCartCount(cartItems.length);
+  }, [cartItems.length]);
   return (
     <>
       <nav
@@ -111,7 +126,7 @@ function Navbar() {
                 )}
               </Link>
 
-              {/* Login or Logout  */} 
+              {/* Login or Logout  */}
               {!isLoggedIn ? (
                 <Link
                   to="/login"
@@ -155,4 +170,3 @@ function Navbar() {
 }
 
 export default Navbar;
-

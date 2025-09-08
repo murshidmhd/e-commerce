@@ -17,18 +17,30 @@ import ViewDetails from "./features/products/ViewDetails";
 import { Toaster } from "react-hot-toast";
 import PaymentPage from "./features/products/PaymentPage";
 import AdminPage from "./Admin/Pages/AdminPage";
+import Dashboard from "./Admin/component/DashBoard";
+import ProductList from "./Admin/component/ProductList";
+import UserList from "./Admin/component/UserList";
 
 function App() {
-  const location = useLocation();
-
-  const hideNavbar = ["/login", "/register","/admin"];
-
-  const showNavbar = !hideNavbar.includes(location.pathname);
+  //  this is for hide nabar
+  // const location = useLocation();
+  // const hideNavbar = ["/login", "/register", "/admin"];
+  // const showNavbar = !hideNavbar.includes(location.pathname);
   // console.log(showNavbar);
+
+  // by using this we can remove navbar from in all sub pages of adminn
+  const hideNavbar =
+    location.pathname.startsWith("/admin") ||
+    location.pathname === "/login" ||
+    location.pathname === "/register";
+
+  const showNavbar = !hideNavbar;
+
   return (
     <>
       {showNavbar && <Navbar />}
       <Routes>
+        {/* user route */}
         <Route path="/shop" element={<Shop />} />
         <Route path="/addlisting" element={<AddListing />} />
         <Route path="/" element={<SlideShow />} />
@@ -48,7 +60,15 @@ function App() {
         <Route path="/order/:id" element={<ViewDetails />}></Route>
         <Route path="/orderdetails" element={<OrderDetails />}></Route>
         <Route path="paymentpage" element={<PaymentPage />} />
-        <Route path="/admin" element={<AdminPage />} />
+
+        {/* admin route */}
+
+        <Route path="/admin" element={<AdminPage />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="products" element={<ProductList />} />
+          <Route path="users" element={<UserList />} />
+          {/* <Route path="sales" element={<SalesData />} /> */}
+        </Route>
       </Routes>
       <Toaster
         position="top-right"
@@ -77,6 +97,8 @@ function App() {
           },
         }}
       />{" "}
+
+    
     </>
   );
 }

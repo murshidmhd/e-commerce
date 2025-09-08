@@ -30,7 +30,13 @@ function Login() {
         return;
       }
 
-      const user = users[0]; // ✅ fix added
+      const user = users[0]; // user  exist
+
+      // Check blocked
+      if (user.blocked) {
+        setError("Your account is blocked. Contact admin.");
+        return; // stop login
+      }
 
       // 🔹 Clear old localStorage
       localStorage.clear();
@@ -45,7 +51,11 @@ function Login() {
       localStorage.setItem("wishlist", JSON.stringify(user.wishlist || []));
       localStorage.setItem("order", JSON.stringify(user.order || []));
 
-      navigate("/");
+      if (user.role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       console.error(err);
       setError("Login failed. Please try again.");

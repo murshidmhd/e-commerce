@@ -1,22 +1,15 @@
-import React, { useState } from "react";
-import Dashboard from "../component/DashBoard";
-import ProductList from "../component/ProductList";
-import UserList from "../component/UserList";
-import AdminSidebar from "../component/AdminSidebar";
+import { Outlet } from "react-router-dom";
+import AdminSidebar from "../component/AdminSidebar"; // make sure path is correct
 
 function AdminPage() {
-  const [section, setSection] = useState("dashboard");
-
   return (
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
-      <AdminSidebar setSection={setSection} />
+      <AdminSidebar />
 
       {/* Main Content */}
       <div className="flex-1 p-6">
-        {section === "dashboard" && <Dashboard />}
-        {section === "products" && <ProductList />}
-        {section === "users" && <UserList />}
+        <Outlet /> {/* Dynamic section here */}
       </div>
     </div>
   );
