@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import AdminSidebar from "../component/AdminSidebar"; // make sure path is correct
+import AdminSidebar from "../layout.jsx/AdminSidebar"; // make sure path is correct
 
 function AdminPage() {
   return (

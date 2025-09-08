@@ -331,6 +331,16 @@
           "quantity": 1
         }
       ]
+    },
+    {
+      "id": "045d",
+      "name": "anas",
+      "email": "anas@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "cart": [],
+      "wishlist": [],
+      "order": []
     }
   ],
   "listings": [

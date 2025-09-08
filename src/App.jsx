@@ -17,13 +17,15 @@ import ViewDetails from "./features/products/ViewDetails";
 import { Toaster } from "react-hot-toast";
 import PaymentPage from "./features/products/PaymentPage";
 import AdminPage from "./Admin/Pages/AdminPage";
-import Dashboard from "./Admin/component/DashBoard";
-import ProductList from "./Admin/component/ProductList";
-import UserList from "./Admin/component/UserList";
+import Dashboard from "./Admin/layout.jsx/DashBoard";
+import ProductList from "./Admin/layout.jsx/ProductList";
+import UserList from "./Admin/layout.jsx/UserList";
+import AdminRoute from "./Admin/component/AdminRoute";
+import Orders from "./Admin/layout.jsx/Orders";
 
 function App() {
   //  this is for hide nabar
-  // const location = useLocation();
+  const location = useLocation();
   // const hideNavbar = ["/login", "/register", "/admin"];
   // const showNavbar = !hideNavbar.includes(location.pathname);
   // console.log(showNavbar);
@@ -63,11 +65,18 @@ function App() {
 
         {/* admin route */}
 
-        <Route path="/admin" element={<AdminPage />}>
-          <Route path="dashboard" element={<Dashboard />} />
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <AdminPage />
+            </AdminRoute>
+          }
+        >
+          <Route index element={<Dashboard />} />
           <Route path="products" element={<ProductList />} />
           <Route path="users" element={<UserList />} />
-          {/* <Route path="sales" element={<SalesData />} /> */}
+          <Route path="orders" element={<Orders />}></Route>
         </Route>
       </Routes>
       <Toaster
@@ -97,8 +106,6 @@ function App() {
           },
         }}
       />{" "}
-
-    
     </>
   );
 }
