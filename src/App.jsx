@@ -22,6 +22,7 @@ import ProductList from "./Admin/layout.jsx/ProductList";
 import UserList from "./Admin/layout.jsx/UserList";
 import AdminRoute from "./Admin/component/AdminRoute";
 import Orders from "./Admin/layout.jsx/Orders";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   //  this is for hide nabar
@@ -40,6 +41,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer position="top-right" autoClose={3000} />
       {showNavbar && <Navbar />}
       <Routes>
         {/* user route */}

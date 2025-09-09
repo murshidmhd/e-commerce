@@ -6,18 +6,7 @@
       "email": "murshid@gmail.com",
       "password": "123456",
       "role": "admin",
-      "cart": [
-        {
-          "id": "17",
-          "title": "The Fault in Our Stars",
-          "author": "John Green",
-          "type": "donation",
-          "price": 0,
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/817tHNcyAgL.jpg",
-          "quantity": 1
-        }
-      ],
+      "cart": [],
       "wishlist": [],
       "order": [],
       "blocked": false
@@ -28,246 +17,9 @@
       "email": "anu@gmail.com",
       "password": "12",
       "role": "user",
-      "cart": [
-        {
-          "id": "18",
-          "title": "The Da Vinci Code",
-          "author": "Dan Brown",
-          "type": "bogo",
-          "price": 185,
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/815WORuYMML.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "19",
-          "title": "Rich Dad Poor Dad",
-          "author": "Robert T. Kiyosaki",
-          "type": "sale",
-          "price": 200,
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81bsw6fnUiL.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "17",
-          "title": "The Fault in Our Stars",
-          "author": "John Green",
-          "type": "donation",
-          "price": 0,
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/817tHNcyAgL.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "16",
-          "title": "The Girl with the Dragon Tattoo",
-          "author": "Stieg Larsson",
-          "type": "donation",
-          "price": 0,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "14",
-          "title": "The Silent Patient",
-          "author": "Alex Michaelides",
-          "type": "sale",
-          "price": 170,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81t2CVWEsUL.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "13",
-          "title": "Sapiens: A Brief History of Humankind",
-          "author": "Yuval Noah Harari",
-          "type": "sale",
-          "price": 300,
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/713jIoMO3UL.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "12",
-          "title": "Harry Potter and the Sorcerer’s Stone",
-          "author": "J.K. Rowling",
-          "type": "sale",
-          "price": 250,
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81YOuOGFCJL.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "7",
-          "title": "Atomic Habits",
-          "author": "James Clear",
-          "type": "bogo",
-          "price": 299,
-          "condition": "New",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51-nXsSRfZL._SX329_BO1,204,203,200_.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "6",
-          "title": "Educated",
-          "author": "Tara Westover",
-          "type": "donation",
-          "price": 0,
-          "condition": "Like New",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81WojUxbbFL.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "5",
-          "title": "The Alchemist",
-          "author": "Paulo Coelho",
-          "type": "sale",
-          "price": 220,
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51Z0nLAfLmL._SX331_BO1,204,203,200_.jpg",
-          "quantity": 1
-        }
-      ],
-      "wishlist": [
-        {
-          "id": "3",
-          "title": "The Hobbit",
-          "author": "J.R.R. Tolkien",
-          "type": "bogo",
-          "price": 250,
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/91b0C2YNSrL.jpg"
-        },
-        {
-          "id": "2",
-          "title": "The Catcher in the Rye",
-          "author": "J.D. Salinger",
-          "type": "sale",
-          "price": 120,
-          "condition": "Acceptable",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81OthjkJBuL.jpg"
-        },
-        {
-          "id": "19",
-          "title": "Rich Dad Poor Dad",
-          "author": "Robert T. Kiyosaki",
-          "type": "sale",
-          "price": 200,
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81bsw6fnUiL.jpg"
-        },
-        {
-          "id": "18",
-          "title": "The Da Vinci Code",
-          "author": "Dan Brown",
-          "type": "bogo",
-          "price": 185,
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/815WORuYMML.jpg"
-        },
-        {
-          "id": "17",
-          "title": "The Fault in Our Stars",
-          "author": "John Green",
-          "type": "donation",
-          "price": 0,
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/817tHNcyAgL.jpg"
-        },
-        {
-          "id": "16",
-          "title": "The Girl with the Dragon Tattoo",
-          "author": "Stieg Larsson",
-          "type": "donation",
-          "price": 0,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg"
-        }
-      ],
-      "order": [
-        {
-          "id": "11",
-          "title": "The Lean Startup",
-          "author": "Eric Ries",
-          "type": "bogo",
-          "price": 275,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "11",
-          "title": "The Lean Startup",
-          "author": "Eric Ries",
-          "type": "bogo",
-          "price": 275,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "10",
-          "title": "The Power of Habit",
-          "author": "Charles Duhigg",
-          "type": "bogo",
-          "price": 250,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "10",
-          "title": "The Power of Habit",
-          "author": "Charles Duhigg",
-          "type": "bogo",
-          "price": 250,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "11",
-          "title": "The Lean Startup",
-          "author": "Eric Ries",
-          "type": "bogo",
-          "price": 275,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "7",
-          "title": "Atomic Habits",
-          "author": "James Clear",
-          "type": "bogo",
-          "price": 299,
-          "condition": "New",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51-nXsSRfZL._SX329_BO1,204,203,200_.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "6",
-          "title": "Educated",
-          "author": "Tara Westover",
-          "type": "donation",
-          "price": 0,
-          "condition": "Like New",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81WojUxbbFL.jpg",
-          "quantity": 1
-        },
-        {
-          "id": "5",
-          "title": "The Alchemist",
-          "author": "Paulo Coelho",
-          "type": "sale",
-          "price": 220,
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51Z0nLAfLmL._SX331_BO1,204,203,200_.jpg",
-          "quantity": 1
-        }
-      ],
+      "cart": [],
+      "wishlist": [],
+      "order": [],
       "blocked": false
     },
     {
@@ -276,38 +28,8 @@
       "email": "favas@gmail.com",
       "password": "123456",
       "role": "user",
-      "cart": [
-        {
-          "id": "16",
-          "title": "The Girl with the Dragon Tattoo",
-          "author": "Stieg Larsson",
-          "type": "donation",
-          "price": 0,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg",
-          "quantity": 1
-        }
-      ],
-      "wishlist": [
-        {
-          "id": "19",
-          "title": "Rich Dad Poor Dad",
-          "author": "Robert T. Kiyosaki",
-          "type": "sale",
-          "price": 200,
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81bsw6fnUiL.jpg"
-        },
-        {
-          "id": "18",
-          "title": "The Da Vinci Code",
-          "author": "Dan Brown",
-          "type": "bogo",
-          "price": 185,
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/815WORuYMML.jpg"
-        }
-      ],
+      "cart": [],
+      "wishlist": [],
       "order": [],
       "blocked": false
     },
@@ -319,18 +41,7 @@
       "role": "user",
       "cart": [],
       "wishlist": [],
-      "order": [
-        {
-          "id": "18",
-          "title": "The Da Vinci Code",
-          "author": "Dan Brown",
-          "type": "bogo",
-          "price": 185,
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/815WORuYMML.jpg",
-          "quantity": 1
-        }
-      ]
+      "order": []
     },
     {
       "id": "045d",
@@ -345,13 +56,13 @@
   ],
   "listings": [
     {
-      "id": "1",
       "title": "The Great Gatsby",
       "author": "F. Scott Fitzgerald",
       "type": "sale",
       "price": 150,
       "condition": "Good",
-      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81af+MCATTL.jpg"
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81af+MCATTL.jpg",
+      "id": "1"
     },
     {
       "id": "2",
@@ -480,22 +191,13 @@
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61fdrEuPJwL._SX329_BO1,204,203,200_.jpg"
     },
     {
-      "id": "16",
-      "title": "The Girl with the Dragon Tattoo",
-      "author": "Stieg Larsson",
-      "type": "donation",
-      "price": 0,
-      "condition": "Good",
-      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg"
-    },
-    {
-      "id": "17",
       "title": "The Fault in Our Stars",
       "author": "John Green",
       "type": "donation",
-      "price": 0,
+      "price": "",
       "condition": "Very Good",
-      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/817tHNcyAgL.jpg"
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/817tHNcyAgL.jpg",
+      "id": "17"
     },
     {
       "id": "18",
@@ -505,24 +207,6 @@
       "price": 185,
       "condition": "Very Good",
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/815WORuYMML.jpg"
-    },
-    {
-      "id": "19",
-      "title": "Rich Dad Poor Dad",
-      "author": "Robert T. Kiyosaki",
-      "type": "sale",
-      "price": 200,
-      "condition": "Very Good",
-      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81bsw6fnUiL.jpg"
-    },
-    {
-      "id": "7b74",
-      "title": "",
-      "author": "",
-      "type": "",
-      "price": "",
-      "condition": "",
-      "imageUrl": ""
     }
   ]
 }
