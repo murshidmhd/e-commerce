@@ -12,6 +12,10 @@ function Wishlist() {
     toast.success("added to cart");
   };
 
+  const handelClearWishlsit = () => {
+    clearWishlist()
+    toast("clear wishlist");
+  };
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-gray-50 p-6">
       <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg p-6">
@@ -77,7 +81,7 @@ function Wishlist() {
             {/* Clear Wishlist Button */}
             <div className="text-center">
               <button
-                onClick={clearWishlist}
+                onClick={handelClearWishlsit}
                 className="w-full bg-gray-800 text-white py-3 rounded-xl hover:bg-gray-900 transition font-medium"
               >
                 Clear Wishlist

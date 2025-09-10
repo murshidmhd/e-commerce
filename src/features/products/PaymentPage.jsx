@@ -8,33 +8,55 @@ function PaymentPage() {
   const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState("UPI");
   const { clearCart, cartItems } = useCart();
+  
+  // Calculate totals
+  const subtotal = cartItems.reduce((sum, item) => sum + (item.price || 0), 0);
+  const shipping = subtotal > 0 ? 50 : 0;
+  const total = subtotal + shipping;
 
   const handlePlaceOrder = async () => {
+    if (cartItems.length === 0) {
+      toast.error("Your cart is empty!");
+      return;
+    }
+
     const userId = localStorage.getItem("userId");
+    if (!userId) {
+      toast.error("Please login to place an order");
+      navigate("/login");
+      return;
+    }
 
     try {
-      const res = await axios.get(`http://localhost:3000/users/${userId}`);
-      const user = res.data;
+      const response = await axios.get(`http://localhost:3000/users/${userId}`);
+      const user = response.data;
 
-      const updateUser = {
+      // Create orders with proper data
+      const newOrders = cartItems.map((item) => ({
+        id: `order-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+        name: item.name,
+        price: item.price,
+        image: item.image,
+        status: "Pending",
+        date: new Date().toLocaleDateString(),
+        paymentMethod: paymentMethod
+      }));
+
+      const updatedUser = {
         ...user,
-        order: [...user.order, ...cartItems],
+        order: [...(user.order || []), ...newOrders],
         cart: [],
       };
 
-      await axios.put(`http://localhost:3000/users/${userId}`, updateUser);
-
+      await axios.put(`http://localhost:3000/users/${userId}`, updatedUser);
       clearCart();
-
-      navigate("/");
-
+      
       toast.success("✅ Order placed successfully!");
+      navigate("/orders");
     } catch (err) {
-      console.error("Erro placing order", err);
-      alert("Something went wrong while placing order");
+      console.error("Error placing order", err);
+      toast.error("Something went wrong while placing order");
     }
-
-    // 👉 Here you will call your placeOrder() logic
   };
 
   return (
@@ -45,22 +67,30 @@ function PaymentPage() {
 
         {/* Order Summary */}
         <div className="border rounded-lg p-4 mb-6 bg-gray-50">
-          <h2 className="text-lg font-semibold text-gray-700 mb-2">
+          <h2 className="text-lg font-semibold text-gray-700 mb-4">
             Order Summary
           </h2>
-          <div className="flex justify-between text-gray-600 mb-1">
-            <p>
-              Book: <span className="font-medium">The Great Gatsby</span>
-            </p>
-            <p>₹499</p>
-          </div>
-          <div className="flex justify-between text-gray-600 mb-1">
-            <p>Shipping</p>
-            <p>₹50</p>
-          </div>
-          <div className="flex justify-between font-bold text-gray-800 mt-2">
-            <p>Total</p>
-            <p>₹549</p>
+          
+          {cartItems.map((item, index) => (
+            <div key={index} className="flex justify-between text-gray-600 mb-2">
+              <p className="truncate max-w-xs">{item.name}</p>
+              <p>₹{item.price}</p>
+            </div>
+          ))}
+          
+          <div className="border-t pt-2 mt-3">
+            <div className="flex justify-between text-gray-600 mb-1">
+              <p>Subtotal</p>
+              <p>₹{subtotal}</p>
+            </div>
+            <div className="flex justify-between text-gray-600 mb-1">
+              <p>Shipping</p>
+              <p>₹{shipping}</p>
+            </div>
+            <div className="flex justify-between font-bold text-gray-800 mt-2 pt-2 border-t">
+              <p>Total</p>
+              <p>₹{total}</p>
+            </div>
           </div>
         </div>
 
@@ -96,9 +126,14 @@ function PaymentPage() {
         {/* Place Order Button */}
         <button
           onClick={handlePlaceOrder}
-          className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-medium"
+          disabled={cartItems.length === 0}
+          className={`w-full py-3 rounded-lg transition font-medium ${
+            cartItems.length === 0
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-blue-600 hover:bg-blue-700 text-white"
+          }`}
         >
-          Place Order
+          {cartItems.length === 0 ? "Cart is Empty" : "Place Order"}
         </button>
       </div>
     </div>

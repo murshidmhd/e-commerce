@@ -1,114 +1,117 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function ViewDetails() {
-  // Example order data (later you can fetch this from your backend)
-  const [order, setOrder] = useState({
-    id: "ORD123456",
-    product: {
-      name: "The Great Gatsby",
-      image: "https://m.media-amazon.com/images/I/81af+MCATTL.jpg",
-      price: 499,
-    },
-    status: "Shipped", // Pending, Shipped, Out for Delivery, Delivered
-    date: "2025-09-02",
-  });
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [order, setOrder] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(()=> {
-    axios.get()
-  })
-  const handleCancelOrder = () => {
-    if (order.status === "Pending" || order.status === "Shipped") {
-      setOrder({ ...order, status: "Cancelled" });
-      alert("❌ Your order has been cancelled.");
-    } else {
-      alert("⚠️ Order cannot be cancelled after it is out for delivery.");
-    }
-  };
+  // Define status steps (excluding Cancelled for progress bar)
+  const steps = ["Pending", "Shipped", "Out for Delivery", "Delivered"];
+
+  useEffect(() => {
+    const fetchOrder = async () => {
+      try {
+        const userId = localStorage.getItem("userId");
+        if (!userId) return navigate("/login");
+
+        const res = await axios.get(`http://localhost:3000/users/${userId}`);
+        const found = res.data.order?.find(
+          (o) => String(o.id) === String(id)
+        );
+        if (!found) return navigate("/orders");
+        setOrder(found);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchOrder();
+  }, [id, navigate]);
+
+  // Progress %
+  const progress = order
+    ? (steps.indexOf(order.status) / (steps.length - 1)) * 100
+    : 0;
+
+  if (loading) return <p className="p-6 text-center">Loading...</p>;
+  if (!order) return <p className="p-6 text-center">Order not found</p>;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-200 p-6 flex items-center justify-center">
-      <div className="max-w-2xl w-full bg-white shadow-lg rounded-2xl p-6">
-        {/* Header */}
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">
-          📦 Order Details
-        </h1>
+    <div className="max-w-3xl mx-auto p-6">
+      <button
+        onClick={() => navigate("/orders")}
+        className="mb-4 text-blue-600 hover:underline"
+      >
+        ← Back
+      </button>
 
-        {/* Product Info */}
-        <div className="flex items-center gap-6 border-b pb-4">
-          <img
-            src={order.product.image}
-            alt={order.product.name}
-            className="w-28 h-36 object-contain rounded-lg shadow"
-          />
-          <div>
-            <h2 className="text-lg font-semibold text-gray-800">
-              {order.product.name}
-            </h2>
-            <p className="text-gray-500">₹{order.product.price}</p>
-            <p className="text-sm text-gray-400">Order ID: {order.id}</p>
-            <p className="text-sm text-gray-400">
-              Ordered on: {order.date}
-            </p>
+      {/* Summary */}
+      <div className="bg-white p-4 rounded-lg shadow mb-6">
+        <h2 className="font-bold text-xl mb-2">{order.name}</h2>
+        <p className="text-gray-600">₹{order.price}</p>
+        <span
+          className={`inline-block mt-2 px-3 py-1 rounded-full text-sm ${
+            order.status === "Delivered"
+              ? "bg-green-100 text-green-700"
+              : order.status === "Cancelled"
+              ? "bg-red-100 text-red-700"
+              : "bg-blue-100 text-blue-700"
+          }`}
+        >
+          {order.status}
+        </span>
+      </div>
+
+      {/* Progress */}
+      {order.status !== "Cancelled" && (
+        <div className="mb-6">
+          <div className="w-full h-2 bg-gray-200 rounded">
+            <div
+              className="h-2 bg-blue-600 rounded"
+              style={{ width: `${progress}%` }}
+            ></div>
+          </div>
+          <div className="flex justify-between mt-2 text-sm text-gray-500">
+            {steps.map((s) => (
+              <span
+                key={s}
+                className={
+                  steps.indexOf(order.status) >= steps.indexOf(s)
+                    ? "text-blue-600 font-medium"
+                    : ""
+                }
+              >
+                {s}
+              </span>
+            ))}
           </div>
         </div>
+      )}
 
-        {/* Status Section */}
-        <div className="mt-6">
-          <h3 className="text-lg font-semibold text-gray-700 mb-3">
-            Order Status
-          </h3>
-
-          <div className="flex items-center justify-between">
-            {["Pending", "Shipped", "Out for Delivery", "Delivered"].map(
-              (step, index) => (
-                <div
-                  key={index}
-                  className={`flex-1 flex flex-col items-center relative ${
-                    step === order.status ? "text-blue-600" : "text-gray-400"
-                  }`}
-                >
-                  <div
-                    className={`w-8 h-8 flex items-center justify-center rounded-full border-2 mb-2 ${
-                      step === order.status
-                        ? "bg-blue-500 text-white border-blue-500"
-                        : "border-gray-300"
-                    }`}
-                  >
-                    {index + 1}
-                  </div>
-                  <p className="text-sm">{step}</p>
-                  {index < 3 && (
-                    <div
-                      className={`absolute top-4 left-full w-full h-1 ${
-                        step === order.status ? "bg-blue-500" : "bg-gray-300"
-                      }`}
-                    ></div>
-                  )}
-                </div>
-              )
-            )}
-          </div>
-        </div>
-
-        {/* Cancel Order */}
-        <div className="mt-8">
-          {order.status !== "Cancelled" ? (
-            <button
-              onClick={handleCancelOrder}
-              className="w-full bg-red-500 text-white py-3 rounded-lg hover:bg-red-600 transition font-medium"
-            >
-              Cancel Order
-            </button>
-          ) : (
-            <p className="text-center text-red-600 font-semibold">
-              ❌ This order has been cancelled
-            </p>
-          )}
-        </div>
+      {/* Actions */}
+      <div className="flex gap-3">
+        {order.status === "Pending" || order.status === "Shipped" ? (
+          <button className="flex-1 bg-red-500 text-white py-2 rounded">
+            Cancel Order
+          </button>
+        ) : null}
+        <button
+          onClick={() => window.print()}
+          className="flex-1 bg-gray-500 text-white py-2 rounded"
+        >
+          Print Receipt
+        </button>
       </div>
     </div>
   );
 }
 
 export default ViewDetails;
+
+
+
+

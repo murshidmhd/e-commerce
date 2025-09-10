@@ -17,8 +17,8 @@ function Navbar() {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const navigate = useNavigate();
 
-  const { setCartItems, cartItems } = useCart();
-  const { setWishlist ,wishitem} = useWishlist();
+  const { clearCart, cartItems } = useCart();
+  const { clearWishlist ,wishitem} = useWishlist();
 
   // Detect scroll for navbar styling
   useEffect(() => {
@@ -34,10 +34,12 @@ function Navbar() {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("cart");
     localStorage.removeItem("wishlist");
-    setCartItems([]);
-    setWishlist([]);
+    // setCartItems([]);
+    clearCart()
+    clearWishlist()
     navigate("/login");
   };
+
 
   // const userId = localStorage.getItem("userId");
   // useEffect(() => {
@@ -92,7 +94,7 @@ function Navbar() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-600 transition-all group-hover:w-full"></span>
               </Link>
               <Link
-                to="/order"
+                to="/orders"
                 className="text-gray-700 hover:text-cyan-600 transition-colors duration-200 relative group"
               >
                 Orders

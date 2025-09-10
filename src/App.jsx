@@ -60,8 +60,8 @@ function App() {
           }
         ></Route>
         <Route path="/wishlist" element={<Wishlist />}></Route>
-        <Route path="/order" element={<OrderPage />} />
-        <Route path="/order/:id" element={<ViewDetails />}></Route>
+        <Route path="/orders" element={<OrderPage />} />
+        <Route path="/orders/:id" element={<ViewDetails />}></Route>
         <Route path="/orderdetails" element={<OrderDetails />}></Route>
         <Route path="paymentpage" element={<PaymentPage />} />
 

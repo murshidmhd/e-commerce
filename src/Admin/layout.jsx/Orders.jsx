@@ -15,6 +15,7 @@ function OrdersPage() {
             userId: user.id,
             userName: user.name,
             userEmail: user.email,
+            status: o.status || "Pending", // add status fallback
           }))
         );
         setOrders(allOrders);
@@ -45,6 +46,7 @@ function OrdersPage() {
               <th className="p-3">Book</th>
               <th className="p-3">Price</th>
               <th className="p-3">Condition</th>
+              <th className="p-3">Status</th> {/* new column */}
             </tr>
           </thead>
           <tbody>
@@ -67,10 +69,26 @@ function OrdersPage() {
                       className={`px-3 py-1 rounded-full text-sm font-medium ${
                         order.condition === "New"
                           ? "bg-green-100 text-green-700"
-                          : "bg-yellow-100 text-yellow-700"
+                          : "bg-gray-100 text-gray-700" // used gray for "Used" or other
                       }`}
                     >
                       {order.condition}
+                    </span>
+                  </td>
+
+                  <td>
+                    <span
+                      className={`px-3 py-1 rounded-full text-sm font-medium ${
+                        order.status === "Pending"
+                          ? "bg-yellow-100 text-yellow-800"
+                          : order.status === "Confirmed"
+                          ? "bg-blue-100 text-blue-800"
+                          : order.status === "Shipped"
+                          ? "bg-green-100 text-green-800"
+                          : "bg-gray-200 text-gray-700"
+                      }`}
+                    >
+                      {order.status}
                     </span>
                   </td>
                 </tr>
@@ -78,7 +96,7 @@ function OrdersPage() {
             ) : (
               <tr>
                 <td
-                  colSpan="5"
+                  colSpan="6"
                   className="p-6 text-center text-gray-500 italic"
                 >
                   No orders found

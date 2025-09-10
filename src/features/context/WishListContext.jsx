@@ -49,7 +49,6 @@ function WishlistProvider({ children }) {
   const clearWishlist = async () => {
     setWishlist([]);
     await saveWishlsitToServer([]);
-    toast("clear wishlist");
   };
   return (
     <WishListContext.Provider

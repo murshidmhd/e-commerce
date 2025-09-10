@@ -8,11 +8,10 @@ function AdminPage() {
       <AdminSidebar />
 
       {/* Main Content */}
-      <div className="flex-1 p-6">
+      <div className="flex-1 p-6 ">
         <Outlet /> {/* Dynamic section here */}
       </div>
     </div>
   );
 }
-
-export default AdminPage;
+export default AdminPage

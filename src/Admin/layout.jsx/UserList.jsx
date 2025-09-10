@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import UserForm from "./UserForm";
 
 function UserList() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showAddForm, setShowAddForm] = useState(false);
 
   useEffect(() => {
     fetchUsers();
@@ -13,9 +17,9 @@ function UserList() {
     try {
       const res = await axios.get("http://localhost:3000/users");
       setUsers(res.data);
-      setLoading(false);
     } catch (err) {
       console.error("Error fetching users:", err);
+    } finally {
       setLoading(false);
     }
   };
@@ -25,7 +29,11 @@ function UserList() {
       await axios.patch(`http://localhost:3000/users/${id}`, {
         blocked: !blocked,
       });
-      fetchUsers();
+      setUsers((prev) =>
+        prev.map((user) =>
+          user.id === id ? { ...user, blocked: !blocked } : user
+        )
+      );
     } catch (err) {
       console.error("Error updating user:", err);
     }
@@ -38,65 +46,89 @@ function UserList() {
       </div>
     );
 
+  const filteredUsers = users.filter((user) =>
+    [user.name, user.email, user.role].some((field) =>
+      field?.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  );
+
   return (
-    <div className="bg-white shadow-lg rounded-xl p-6">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">👥 Manage Users</h1>
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr className="bg-gray-100 text-left text-gray-700">
-              <th className="p-3">Name</th>
-              <th className="p-3">Email</th>
-              <th className="p-3">Status</th>
-              <th className="p-3">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.length > 0 ? (
-              users.map((user, index) => (
-                <tr
-                  key={index}
-                  className="border-b hover:bg-gray-50 transition duration-200"
+    <div className="p-6">
+      {/* Add User Button */}
+      <div className="flex justify-end mb-4">
+        <button
+          onClick={() => setShowAddForm(!showAddForm)}
+          className={`font-bold py-2 px-4 rounded transition-colors duration-200 ${
+            showAddForm
+              ? "bg-red-500 hover:bg-red-600 text-white"
+              : "bg-blue-500 hover:bg-blue-700 text-white"
+          }`}
+        >
+          {showAddForm ? "Cancel" : "➕ Add User"}
+        </button>
+      </div>
+
+      {/* Add/Edit Form */}
+      {showAddForm && (
+        <div className="mb-8 transition-all duration-500 ease-in-out transform scale-95 animate-fadeIn">
+          <UserForm setShowAddForm={setShowAddForm} />
+        </div>
+      )}
+
+      {/* Search Bar */}
+      <div className="flex items-center border rounded-lg px-3 py-2 w-full md:w-1/3 mb-6">
+        <MagnifyingGlassIcon className="h-5 w-5 text-gray-500 mr-2" />
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="outline-none w-full"
+        />
+      </div>
+
+      <h1 className="text-3xl font-bold mb-6 text-gray-800">👥 Manage Users</h1>
+
+      {/* Users Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredUsers.length > 0 ? (
+          filteredUsers.map((user) => (
+            <div
+              key={user.id}
+              className="bg-white shadow-lg rounded-xl p-4 border border-gray-200 flex flex-col items-center"
+            >
+              <h3 className="font-semibold text-lg text-gray-900">{user.name}</h3>
+              <p className="text-gray-600">{user.email}</p>
+              <p className="text-gray-600">Role: {user.role || "-"}</p>
+              <span
+                className={`mt-2 px-3 py-1 rounded-full text-sm font-medium ${
+                  user.blocked
+                    ? "bg-red-100 text-red-700"
+                    : "bg-green-100 text-green-700"
+                }`}
+              >
+                {user.blocked ? "Blocked" : "Active"}
+              </span>
+
+              <div className="mt-4 flex gap-3">
+                <button
+                  onClick={() => toggleBlock(user.id, user.blocked)}
+                  className={`px-4 py-2 text-sm rounded-lg text-white ${
+                    user.blocked
+                      ? "bg-green-500 hover:bg-green-600"
+                      : "bg-red-500 hover:bg-red-600"
+                  }`}
                 >
-                  <td className="p-3 font-medium text-gray-800">{user.name}</td>
-                  <td className="p-3 text-gray-600">{user.email}</td>
-                  <td className="p-3">
-                    <span
-                      className={`px-3 py-1 rounded-full text-sm font-medium ${
-                        user.blocked
-                          ? "bg-red-100 text-red-700"
-                          : "bg-green-100 text-green-700"
-                      }`}
-                    >
-                      {user.blocked ? "Blocked" : "Active"}
-                    </span>
-                  </td>
-                  <td className="p-3">
-                    <button
-                      onClick={() => toggleBlock(user.id, user.blocked)}
-                      className={`px-4 py-1 rounded-lg text-white text-sm font-semibold ${
-                        user.blocked
-                          ? "bg-green-500 hover:bg-green-600"
-                          : "bg-red-500 hover:bg-red-600"
-                      }`}
-                    >
-                      {user.blocked ? "Unblock" : "Block"}
-                    </button>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td
-                  colSpan="4"
-                  className="p-6 text-center text-gray-500 italic"
-                >
-                  No users found
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+                  {user.blocked ? "Unblock" : "Block"}
+                </button>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p className="text-center text-gray-500 italic col-span-full">
+            No users found
+          </p>
+        )}
       </div>
     </div>
   );

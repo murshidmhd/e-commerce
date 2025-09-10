@@ -6,9 +6,76 @@
       "email": "murshid@gmail.com",
       "password": "123456",
       "role": "admin",
-      "cart": [],
+      "cart": [
+        {
+          "title": "The Fault in Our Stars",
+          "author": "John Green",
+          "type": "donation",
+          "price": "",
+          "condition": "Very Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/817tHNcyAgL.jpg",
+          "id": "17",
+          "quantity": 1
+        }
+      ],
       "wishlist": [],
-      "order": [],
+      "order": [
+        {
+          "title": "The Fault in Our Stars",
+          "author": "John Green",
+          "type": "donation",
+          "price": "",
+          "condition": "Very Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/817tHNcyAgL.jpg",
+          "id": "17",
+          "quantity": 1,
+          "status": "Pending"
+        },
+        {
+          "id": "15",
+          "title": "Thinking, Fast and Slow",
+          "author": "Daniel Kahneman",
+          "type": "bogo",
+          "price": 290,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61fdrEuPJwL._SX329_BO1,204,203,200_.jpg",
+          "quantity": 1,
+          "status": "Confirmed"
+        },
+        {
+          "id": "12",
+          "title": "Harry Potter and the Sorcerer’s Stone",
+          "author": "J.K. Rowling",
+          "type": "sale",
+          "price": 250,
+          "condition": "Very Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81YOuOGFCJL.jpg",
+          "quantity": 7,
+          "status": "Shipped"
+        },
+        {
+          "id": "11",
+          "title": "The Lean Startup",
+          "author": "Eric Ries",
+          "type": "bogo",
+          "price": 275,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg",
+          "quantity": 1,
+          "status": "Out for Delivery"
+        },
+        {
+          "id": "10",
+          "title": "The Power of Habit",
+          "author": "Charles Duhigg",
+          "type": "bogo",
+          "price": 250,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg",
+          "quantity": 1,
+          "status": "hhhhhh"
+        }
+      ],
       "blocked": false
     },
     {
@@ -52,6 +119,32 @@
       "cart": [],
       "wishlist": [],
       "order": []
+    },
+    {
+      "id": "394c",
+      "name": "",
+      "email": ""
+    },
+    {
+      "id": "78f1",
+      "name": "murshid",
+      "email": "hello@gmail.com",
+      "role": "admin "
+    },
+    {
+      "id": "de80",
+      "name": "hello ",
+      "email": "hello@gmail.com",
+      "role": "user"
+    },
+    {
+      "id": "f56a",
+      "name": "fav",
+      "email": "fa@gmail.com",
+      "role": "user",
+      "password": "123",
+      "cart": [],
+      "wishlist": []
     }
   ],
   "listings": [
@@ -207,6 +300,24 @@
       "price": 185,
       "condition": "Very Good",
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/815WORuYMML.jpg"
+    },
+    {
+      "id": "909f",
+      "title": "",
+      "author": "",
+      "type": "",
+      "price": "",
+      "condition": "",
+      "imageUrl": ""
+    },
+    {
+      "id": "d040",
+      "title": "",
+      "author": "",
+      "type": "",
+      "price": "",
+      "condition": "",
+      "imageUrl": ""
     }
   ]
 }

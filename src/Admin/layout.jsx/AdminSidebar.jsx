@@ -1,9 +1,22 @@
-import { NavLink } from "react-router-dom";
-import { LayoutDashboard, Package, Users, ShoppingCart } from "lucide-react"; // install: npm i lucide-react
+import { NavLink, useNavigate } from "react-router-dom";
+import {
+  LayoutDashboard,
+  Package,
+  Users,
+  ShoppingCart,
+  LogOut,
+} from "lucide-react";
 
 function AdminSidebar() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("adminToken"); 
+    navigate("/login");
+  };
+
   return (
-    <div className="w-64 bg-gray-900 text-white flex flex-col shadow-lg">
+    <div className="w-64 bg-gray-900 text-white flex flex-col shadow-lg h-screen sticky top-0">
       {/* Header */}
       <div className="p-5 text-2xl font-bold border-b border-gray-700">
         Admin Panel
@@ -56,6 +69,16 @@ function AdminSidebar() {
           <ShoppingCart size={20} /> Orders
         </NavLink>
       </nav>
+
+      {/* Logout Button */}
+      <div className="p-4 border-t border-gray-700">
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-3 w-full p-2 rounded-md bg-red-600 hover:bg-red-700 transition"
+        >
+          <LogOut size={20} /> Logout
+        </button>
+      </div>
     </div>
   );
 }
