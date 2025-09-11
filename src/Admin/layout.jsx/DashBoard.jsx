@@ -23,7 +23,6 @@ const COLORS = [
   "#FF6F91",
 ];
 
-// ... keep your imports same
 
 function Dashboard() {
   const [users, setUsers] = useState([]);
@@ -41,7 +40,7 @@ function Dashboard() {
         setUsers(usersRes.data);
         setListings(listingsRes.data);
 
-        // Collect all orders
+        // Collect orders
         const allOrders = usersRes.data.flatMap((u) =>
           (u.order || []).map((o) => ({
             ...o,

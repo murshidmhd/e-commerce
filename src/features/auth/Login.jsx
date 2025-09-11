@@ -32,10 +32,10 @@ function Login() {
 
       const user = users[0]; // user  exist
 
-      // Check blocked
+      // Check blocked ippo blocked anengi return avide stop aavum 
       if (user.blocked) {
         setError("Your account is blocked. Contact admin.");
-        return; // stop login
+        return; 
       }
 
       // 🔹 Clear old localStorage

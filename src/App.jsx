@@ -2,11 +2,11 @@ import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Login from "./features/auth/Login";
 import Register from "./features/auth/Ragister";
-import Navbar from "./components /layout/Navbar";
+import Navbar from "./components /Navbar";
 // import HomePage from "./components /Home";
 import SlideShow from "./Pages/Home";
 import Shop from "./Pages/Shop";
-import AddListing from "./features/products/AddListing";
+// import AddListing from "./features/products/AddListing";
 import Cart from "./Pages/Cart";
 import ProtectedRoute from "./features/auth/PortectedRoute";
 import Wishlist from "./Pages/Wish";
@@ -23,6 +23,8 @@ import UserList from "./Admin/layout.jsx/UserList";
 import AdminRoute from "./Admin/component/AdminRoute";
 import Orders from "./Admin/layout.jsx/Orders";
 import { ToastContainer } from "react-toastify";
+import ListingsPreview from "./components /ListingsPreview";
+import ListingView from "./components /ListingView";
 
 function App() {
   //  this is for hide nabar
@@ -46,11 +48,13 @@ function App() {
       <Routes>
         {/* user route */}
         <Route path="/shop" element={<Shop />} />
-        <Route path="/addlisting" element={<AddListing />} />
+        {/* <Route path="/addlisting" element={<AddListing />} /> */}
         <Route path="/" element={<SlideShow />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />}></Route>
+        <Route path="/" element={<ListingsPreview />} />
+        <Route path="/listings/:id" element={<ListingView />} />
         <Route
           path="/cart"
           element={

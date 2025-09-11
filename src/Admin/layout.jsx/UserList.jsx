@@ -8,6 +8,7 @@ function UserList() {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [showAddForm, setShowAddForm] = useState(false);
+  const [editUser, setEditUser] = useState(null); // ✅ NEW: Edit user state
 
   useEffect(() => {
     fetchUsers();
@@ -21,6 +22,20 @@ function UserList() {
       console.error("Error fetching users:", err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  // ✅ NEW: Delete user function
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      try {
+        await axios.delete(`http://localhost:3000/users/${id}`);
+        alert("🗑️ User deleted successfully!");
+        fetchUsers(); // Refresh the list
+      } catch (err) {
+        console.error("Error deleting user:", err);
+        alert("❌ Failed to delete user");
+      }
     }
   };
 
@@ -57,7 +72,10 @@ function UserList() {
       {/* Add User Button */}
       <div className="flex justify-end mb-4">
         <button
-          onClick={() => setShowAddForm(!showAddForm)}
+          onClick={() => {
+            setShowAddForm(!showAddForm);
+            setEditUser(null); // ✅ NEW: Clear edit when toggling add form
+          }}
           className={`font-bold py-2 px-4 rounded transition-colors duration-200 ${
             showAddForm
               ? "bg-red-500 hover:bg-red-600 text-white"
@@ -69,9 +87,14 @@ function UserList() {
       </div>
 
       {/* Add/Edit Form */}
-      {showAddForm && (
+      {(showAddForm || editUser) && ( // ✅ NEW: Show form when adding OR editing
         <div className="mb-8 transition-all duration-500 ease-in-out transform scale-95 animate-fadeIn">
-          <UserForm setShowAddForm={setShowAddForm} />
+          <UserForm 
+            setShowAddForm={setShowAddForm}
+            fetchUsers={fetchUsers}  // ✅ NEW: Pass fetchUsers function
+            editUser={editUser}      // ✅ NEW: Pass edit user data
+            setEditUser={setEditUser} // ✅ NEW: Pass edit state setter
+          />
         </div>
       )}
 
@@ -80,7 +103,7 @@ function UserList() {
         <MagnifyingGlassIcon className="h-5 w-5 text-gray-500 mr-2" />
         <input
           type="text"
-          placeholder="Search..."
+          placeholder="Search users..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="outline-none w-full"
@@ -110,23 +133,40 @@ function UserList() {
                 {user.blocked ? "Blocked" : "Active"}
               </span>
 
-              <div className="mt-4 flex gap-3">
+              {/* ✅ NEW: Enhanced action buttons */}
+              <div className="mt-4 flex gap-2">
+                <button
+                  onClick={() => {
+                    setEditUser(user);      // ✅ NEW: Set user to edit
+                    setShowAddForm(true);   // ✅ NEW: Show the form
+                  }}
+                  className="px-3 py-2 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                >
+                  ✏️ Edit
+                </button>
                 <button
                   onClick={() => toggleBlock(user.id, user.blocked)}
-                  className={`px-4 py-2 text-sm rounded-lg text-white ${
+                  className={`px-3 py-2 text-sm rounded-lg text-white transition-colors ${
                     user.blocked
                       ? "bg-green-500 hover:bg-green-600"
-                      : "bg-red-500 hover:bg-red-600"
+                      : "bg-yellow-500 hover:bg-yellow-600"
                   }`}
                 >
-                  {user.blocked ? "Unblock" : "Block"}
+                  {user.blocked ? "🔓 Unblock" : "🔒 Block"}
+                </button>
+                {/* ✅ NEW: Delete button */}
+                <button
+                  onClick={() => handleDelete(user.id)}
+                  className="px-3 py-2 text-sm bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                >
+                  🗑️ Delete
                 </button>
               </div>
             </div>
           ))
         ) : (
           <p className="text-center text-gray-500 italic col-span-full">
-            No users found
+            No users found matching your search
           </p>
         )}
       </div>
