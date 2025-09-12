@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
-function ProductForm({ fetchProducts, editProduct, setEditProduct }) {
+function ProductForm({
+  setShowForm,
+  fetchProducts,
+  editProduct,
+  setEditProduct,
+}) {
   const [formData, setFormData] = useState({
     title: "",
     author: "",
@@ -113,13 +119,20 @@ function ProductForm({ fetchProducts, editProduct, setEditProduct }) {
         <button
           type="submit"
           className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+          onClick={() => {
+            setShowForm(false);
+            toast.success("Product added.");
+          }}
         >
           {editProduct ? "Update" : "Add"}
         </button>
-        {editProduct && (
+        {editProduct  && (
           <button
             type="button"
-            onClick={() => setEditProduct(null)}
+            onClick={() => {
+              setEditProduct(null);
+              setShowForm(false);
+            }}
             className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
           >
             Cancel

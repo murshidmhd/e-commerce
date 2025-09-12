@@ -11,14 +11,15 @@ import { useCart } from "../features/context/CartContext";
 import { useWishlist } from "../features/context/WishListContext";
 
 function Navbar() {
-  const [cartCount, setCartCount] = useState(2);
+  const [cartCount, setCartCount] = useState();
+  const [wishlistCount, setWishlistCount] = useState();
 
   const [isScrolled, setIsScrolled] = useState(false);
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const navigate = useNavigate();
 
   const { clearCart, cartItems } = useCart();
-  const { clearWishlist ,wishitem} = useWishlist();
+  const { clearWishlist, wishlist } = useWishlist();
 
   // Detect scroll for navbar styling
   useEffect(() => {
@@ -35,11 +36,10 @@ function Navbar() {
     localStorage.removeItem("cart");
     localStorage.removeItem("wishlist");
     // setCartItems([]);
-    clearCart()
-    clearWishlist()
+    clearCart();
+    clearWishlist();
     navigate("/login");
   };
-
 
   // const userId = localStorage.getItem("userId");
   // useEffect(() => {
@@ -56,6 +56,11 @@ function Navbar() {
   useEffect(() => {
     setCartCount(cartItems.length);
   }, [cartItems.length]);
+
+  useEffect(() => {
+    setWishlistCount(wishlist.length);
+  }, [wishlist.length]);
+
   return (
     <>
       <nav
@@ -111,7 +116,7 @@ function Navbar() {
               >
                 <HeartIcon className="w-6 h-6" />
                 <span className="absolute -top-1 -right-1 bg-cyan-100 text-cyan-700 text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold group-hover:scale-110 transition-transform">
-                  2
+                  {wishlistCount}
                 </span>
               </Link>
 

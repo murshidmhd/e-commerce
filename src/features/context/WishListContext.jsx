@@ -59,6 +59,6 @@ function WishlistProvider({ children }) {
   );
 }
 
-const useWishlist = () => useContext(WishListContext);
+ const useWishlist = () => useContext(WishListContext);
 
 export { useWishlist, WishlistProvider };

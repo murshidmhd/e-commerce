@@ -10,14 +10,15 @@ function OrdersPage() {
       .get("http://localhost:3000/users")
       .then((res) => {
         const allOrders = res.data.flatMap((user) =>
-          user.order.map((o) => ({
+          (user.order || []).map((o) => ({
             ...o,
             userId: user.id,
             userName: user.name,
             userEmail: user.email,
-            status: o.status || "Pending", // add status fallback
+            status: o.status || "Pending", // fallback if status missing
           }))
         );
+
         setOrders(allOrders);
         setLoading(false);
       })

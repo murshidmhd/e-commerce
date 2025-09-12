@@ -8,7 +8,7 @@ function PaymentPage() {
   const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState("UPI");
   const { clearCart, cartItems } = useCart();
-  
+
   // Calculate totals
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price || 0), 0);
   const shipping = subtotal > 0 ? 50 : 0;
@@ -34,12 +34,16 @@ function PaymentPage() {
       // Create orders with proper data
       const newOrders = cartItems.map((item) => ({
         id: `order-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-        name: item.name,
+        title: item.title, 
+        author: item.author, 
+        type: item.type,
         price: item.price,
-        image: item.image,
+        condition: item.condition, 
+        imageUrl: item.imageUrl, 
+        quantity: item.quantity || 1,
         status: "Pending",
         date: new Date().toLocaleDateString(),
-        paymentMethod: paymentMethod
+        paymentMethod: paymentMethod,
       }));
 
       const updatedUser = {
@@ -50,7 +54,7 @@ function PaymentPage() {
 
       await axios.put(`http://localhost:3000/users/${userId}`, updatedUser);
       clearCart();
-      
+
       toast.success("✅ Order placed successfully!");
       navigate("/orders");
     } catch (err) {
@@ -70,14 +74,17 @@ function PaymentPage() {
           <h2 className="text-lg font-semibold text-gray-700 mb-4">
             Order Summary
           </h2>
-          
+
           {cartItems.map((item, index) => (
-            <div key={index} className="flex justify-between text-gray-600 mb-2">
+            <div
+              key={index}
+              className="flex justify-between text-gray-600 mb-2"
+            >
               <p className="truncate max-w-xs">{item.name}</p>
               <p>₹{item.price}</p>
             </div>
           ))}
-          
+
           <div className="border-t pt-2 mt-3">
             <div className="flex justify-between text-gray-600 mb-1">
               <p>Subtotal</p>

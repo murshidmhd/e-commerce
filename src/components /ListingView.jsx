@@ -2,8 +2,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useCart } from "../features/context/CartContext";
 
 function ListingView() {
+  const { addToCart } = useCart();
   const { id } = useParams();
   const navigate = useNavigate();
   const [listing, setListing] = useState(null);
@@ -20,6 +22,7 @@ function ListingView() {
 
   if (loading) return <p className="p-6 text-gray-500">Loading…</p>;
   if (error) return <p className="p-6 text-red-500">{error}</p>;
+
 
   return (
     <div className="max-w-6xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-6">
@@ -45,9 +48,7 @@ function ListingView() {
               </span>
             )}
             {listing.type === "donation" && (
-              <span className="text-xl text-green-600 font-semibold">
-                Free
-              </span>
+              <span className="text-xl text-green-600 font-semibold">Free</span>
             )}
             {listing.type === "bogo" && (
               <span className="text-xl text-yellow-600 font-semibold">
@@ -65,7 +66,10 @@ function ListingView() {
 
           {/* Buttons at bottom */}
           <div className="mt-auto flex gap-4">
-            <button className="bg-cyan-600 text-white px-6 py-3 rounded-lg hover:bg-cyan-700">
+            <button
+              onClick={()=>addToCart(listing)}
+              className="bg-cyan-600 text-white px-6 py-3 rounded-lg hover:bg-cyan-700"
+            >
               Add to Cart
             </button>
             <button

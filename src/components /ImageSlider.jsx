@@ -9,7 +9,7 @@ const ImageSlider = () => {
       id: 1,
       title: "Discover Your Next Favorite Book",
       subtitle: "From timeless classics to modern bestsellers, find stories that inspire.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=600&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=1200&h=600&fit=crop&crop=center",
       cta: "Explore Collection"
     },
     {
@@ -45,7 +45,7 @@ const ImageSlider = () => {
   };
 
   return (
-    <div className="relative w-full h-[70vh] min-h-[500px] max-h-[700px] overflow-hidden rounded-2xl shadow-2xl mb-12">
+    <div className="relative w-full h-[70vh] min-h-[500px] max-h-[700px] overflow-hidden rounded-2xl shadow-2xl mb-12 mt-6">
       {/* Background slides */}
       {slides.map((slide, idx) => (
         <div

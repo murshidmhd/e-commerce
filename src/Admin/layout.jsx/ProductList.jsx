@@ -20,6 +20,7 @@ function ProductList() {
       setProducts(res.data);
     } catch (error) {
       toast.error("❌ Failed to fetch products");
+      console.error(error);
     }
   };
 
@@ -30,6 +31,7 @@ function ProductList() {
       fetchProducts();
     } catch (error) {
       toast.error("❌ Failed to delete product");
+      console.error(error);
     }
   };
   const filteredProducts = products.filter((product) =>
@@ -60,6 +62,7 @@ function ProductList() {
             fetchProducts={fetchProducts}
             editProduct={editProduct}
             setEditProduct={setEditProduct}
+            setShowForm={setShowForm}
           />
         </div>
       )}

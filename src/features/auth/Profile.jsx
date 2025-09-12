@@ -1,5 +1,7 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -9,6 +11,8 @@ function Profile() {
   const [showChangeModal, setShowChangeModal] = useState(false);
   const [newPassword, setNewPassword] = useState("");
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const userId = localStorage.getItem("userId");
 
@@ -17,7 +21,6 @@ function Profile() {
       setLoading(false);
       return;
     }
-
     axios
       .get(`http://localhost:3000/users/${userId}`)
       .then((res) => {
@@ -50,6 +53,7 @@ function Profile() {
       setNewPassword("");
     } catch (err) {
       alert("❌ Failed to update password");
+      console.error(err);
     }
   };
 
@@ -61,10 +65,16 @@ function Profile() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-6 space-y-6">
         {/* Profile Info */}
-        <h1 className="text-2xl font-bold text-center text-gray-800">👤 Profile</h1>
+        <h1 className="text-2xl font-bold text-center text-gray-800">
+          👤 Profile
+        </h1>
         <div className="bg-gray-50 rounded-xl p-4 shadow-inner space-y-2">
-          <p><strong>Name:</strong> {user.name}</p>
-          <p><strong>Email:</strong> {user.email}</p>
+          <p>
+            <strong>Name:</strong> {user.name}
+          </p>
+          <p>
+            <strong>Email:</strong> {user.email}
+          </p>
         </div>
 
         {/* Settings */}
@@ -78,8 +88,8 @@ function Profile() {
           <button
             onClick={() => {
               localStorage.removeItem("userId");
-              alert("Logged out!");
-              window.location.href = "/login";
+              toast.success("you have successfully logged out of your account")
+              navigate("/login");
             }}
             className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600"
           >

@@ -8,7 +8,7 @@ function UserList() {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [showAddForm, setShowAddForm] = useState(false);
-  const [editUser, setEditUser] = useState(null); // ✅ NEW: Edit user state
+  const [editUser, setEditUser] = useState(null); 
 
   useEffect(() => {
     fetchUsers();
@@ -25,13 +25,12 @@ function UserList() {
     }
   };
 
-  // ✅ NEW: Delete user function
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
       try {
         await axios.delete(`http://localhost:3000/users/${id}`);
         alert("🗑️ User deleted successfully!");
-        fetchUsers(); // Refresh the list
+        fetchUsers(); 
       } catch (err) {
         console.error("Error deleting user:", err);
         alert("❌ Failed to delete user");
@@ -74,7 +73,7 @@ function UserList() {
         <button
           onClick={() => {
             setShowAddForm(!showAddForm);
-            setEditUser(null); // ✅ NEW: Clear edit when toggling add form
+            setEditUser(null); 
           }}
           className={`font-bold py-2 px-4 rounded transition-colors duration-200 ${
             showAddForm
@@ -87,13 +86,13 @@ function UserList() {
       </div>
 
       {/* Add/Edit Form */}
-      {(showAddForm || editUser) && ( // ✅ NEW: Show form when adding OR editing
+      {(showAddForm || editUser) && (
         <div className="mb-8 transition-all duration-500 ease-in-out transform scale-95 animate-fadeIn">
           <UserForm 
             setShowAddForm={setShowAddForm}
-            fetchUsers={fetchUsers}  // ✅ NEW: Pass fetchUsers function
-            editUser={editUser}      // ✅ NEW: Pass edit user data
-            setEditUser={setEditUser} // ✅ NEW: Pass edit state setter
+            fetchUsers={fetchUsers}  
+            editUser={editUser}      
+            setEditUser={setEditUser} 
           />
         </div>
       )}
@@ -133,12 +132,12 @@ function UserList() {
                 {user.blocked ? "Blocked" : "Active"}
               </span>
 
-              {/* ✅ NEW: Enhanced action buttons */}
+              {/* edit btn  */}
               <div className="mt-4 flex gap-2">
                 <button
                   onClick={() => {
-                    setEditUser(user);      // ✅ NEW: Set user to edit
-                    setShowAddForm(true);   // ✅ NEW: Show the form
+                    setEditUser(user);     
+                    setShowAddForm(true);   
                   }}
                   className="px-3 py-2 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
                 >
@@ -154,7 +153,7 @@ function UserList() {
                 >
                   {user.blocked ? "🔓 Unblock" : "🔒 Block"}
                 </button>
-                {/* ✅ NEW: Delete button */}
+                {/*  Delete button */}
                 <button
                   onClick={() => handleDelete(user.id)}
                   className="px-3 py-2 text-sm bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
