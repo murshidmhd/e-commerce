@@ -1,25 +1,13 @@
 {
   "users": [
     {
-      "id": "c079",
       "name": "murshid",
       "email": "murshid@gmail.com",
-      "password": "123456",
-      "role": "admin",
-      "cart": [],
-      "wishlist": [],
-      "order": [
-        {
-          "title": "The Fault in Our Stars",
-          "author": "John Green",
-          "type": "donation",
-          "price": "",
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/817tHNcyAgL.jpg",
-          "id": "17",
-          "quantity": 1,
-          "status": "Pending"
-        },
+      "role": "Admin",
+      "password": "",
+      "id": "c079",
+      "blocked": false,
+      "cart": [
         {
           "id": "15",
           "title": "Thinking, Fast and Slow",
@@ -28,91 +16,61 @@
           "price": 290,
           "condition": "Good",
           "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61fdrEuPJwL._SX329_BO1,204,203,200_.jpg",
-          "quantity": 1,
-          "status": "Confirmed"
+          "quantity": 10
         },
         {
-          "id": "12",
-          "title": "Harry Potter and the Sorcerer’s Stone",
-          "author": "J.K. Rowling",
-          "type": "sale",
-          "price": 250,
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81YOuOGFCJL.jpg",
-          "quantity": 7,
-          "status": "Shipped"
-        },
-        {
-          "id": "11",
-          "title": "The Lean Startup",
-          "author": "Eric Ries",
-          "type": "bogo",
-          "price": 275,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg",
-          "quantity": 1,
-          "status": "Out for Delivery"
-        },
-        {
-          "id": "10",
-          "title": "The Power of Habit",
-          "author": "Charles Duhigg",
-          "type": "bogo",
-          "price": 250,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51ejXdSceNL._SX329_BO1,204,203,200_.jpg",
-          "quantity": 1,
-          "status": "hhhhhh"
-        },
-        {
-          "id": "order-1757581068671-077nzugha",
-          "name": "Brave New World",
-          "price": 0,
-          "status": "Pending",
-          "date": "9/11/2025",
-          "paymentMethod": "UPI"
-        },
-        {
-          "id": "order-1757581165813-x35a2sslw",
+          "id": "14",
           "title": "The Silent Patient",
           "author": "Alex Michaelides",
           "type": "sale",
           "price": 170,
           "condition": "Good",
           "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81t2CVWEsUL.jpg",
+          "quantity": 1
+        }
+      ],
+      "order": [
+        {
+          "id": "order-1757739222364-mcg2arrrs",
+          "title": "The Great Gatsby",
+          "author": "F. Scott Fitzgerald",
+          "type": "sale",
+          "price": 150,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81af+MCATTL.jpg",
           "quantity": 1,
-          "status": "Pending",
-          "date": "9/11/2025",
-          "paymentMethod": "UPI"
+          "status": "Confirmed",
+          "date": "9/13/2025",
+          "paymentMethod": "Cash on Delivery"
         },
         {
-          "id": "order-1757590834965-z7qy2y4g2",
-          "title": "The Hobbit",
-          "author": "J.R.R. Tolkien",
+          "id": "order-1757739243674-70s9nw1u0",
+          "title": "Sapiens: A Brief History of Humankind",
+          "author": "Yuval Noah Harari",
+          "type": "sale",
+          "price": 300,
+          "condition": "Very Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/713jIoMO3UL.jpg",
+          "quantity": 1,
+          "status": "Confirmed",
+          "date": "9/12/2025",
+          "paymentMethod": "Card"
+        },
+        {
+          "id": "order-1757739243674-gfys6jlb8",
+          "title": "The Lean Startup",
+          "author": "Eric Ries",
           "type": "bogo",
-          "price": 250,
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/91b0C2YNSrL.jpg",
-          "quantity": 1,
+          "price": 275,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg",
+          "quantity": 4,
           "status": "Pending",
-          "date": "9/11/2025",
-          "paymentMethod": "Cash on Delivery"
+          "date": "9/5/2025",
+          "paymentMethod": "Card"
         },
         {
-          "id": "order-1757590834965-n09hemwb7",
-          "title": "The Fault in Our Stars",
-          "author": "John Green",
-          "type": "donation",
-          "price": "",
-          "condition": "Very Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/817tHNcyAgL.jpg",
-          "quantity": 1,
-          "status": "Pending",
-          "date": "9/11/2025",
-          "paymentMethod": "Cash on Delivery"
-        },
-        {
-          "id": "order-1757590868551-xoszool7y",
+          "id": "order-1757758511350-vu13pz2si",
           "title": "Thinking, Fast and Slow",
           "author": "Daniel Kahneman",
           "type": "bogo",
@@ -120,12 +78,12 @@
           "condition": "Good",
           "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61fdrEuPJwL._SX329_BO1,204,203,200_.jpg",
           "quantity": 1,
-          "status": "Pending",
-          "date": "9/11/2025",
+          "status": "Confirmed",
+          "date": "9/13/2025",
           "paymentMethod": "Cash on Delivery"
         },
         {
-          "id": "order-1757590868551-fd6o18x2t",
+          "id": "order-1757758511350-yis5fxoto",
           "title": "The Silent Patient",
           "author": "Alex Michaelides",
           "type": "sale",
@@ -133,12 +91,35 @@
           "condition": "Good",
           "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81t2CVWEsUL.jpg",
           "quantity": 1,
+          "status": "Shipped",
+          "date": "9/13/2025",
+          "paymentMethod": "Cash on Delivery"
+        },
+        {
+          "id": "order-1757758511350-pec31dgct",
+          "title": "Sapiens: A Brief History of Humankind",
+          "author": "Yuval Noah Harari",
+          "type": "sale",
+          "price": 300,
+          "condition": "Very Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/713jIoMO3UL.jpg",
+          "quantity": 1,
           "status": "Pending",
-          "date": "9/11/2025",
+          "date": "9/13/2025",
           "paymentMethod": "Cash on Delivery"
         }
       ],
-      "blocked": false
+      "wishlist": [
+        {
+          "id": "15",
+          "title": "Thinking, Fast and Slow",
+          "author": "Daniel Kahneman",
+          "type": "bogo",
+          "price": 290,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61fdrEuPJwL._SX329_BO1,204,203,200_.jpg"
+        }
+      ]
     },
     {
       "id": "0d70",
@@ -170,35 +151,8 @@
       "role": "user",
       "cart": [],
       "wishlist": [],
-      "order": []
-    },
-    {
-      "id": "045d",
-      "name": "anas",
-      "email": "anas@gmail.com",
-      "password": "123456",
-      "role": "user",
-      "cart": [],
-      "wishlist": [],
-      "order": []
-    },
-    {
-      "id": "394c",
-      "name": "",
-      "email": ""
-    },
-    {
-      "id": "78f1",
-      "name": "murshid",
-      "email": "hello@gmail.com",
-      "role": "admin ",
+      "order": [],
       "blocked": false
-    },
-    {
-      "id": "de80",
-      "name": "hello ",
-      "email": "hello@gmail.com",
-      "role": "user"
     },
     {
       "id": "f56a",
@@ -208,18 +162,26 @@
       "password": "123",
       "cart": [],
       "wishlist": [],
-      "order": []
+      "order": [],
+      "blocked": false
+    },
+    {
+      "id": "6a4e",
+      "name": "arifa",
+      "email": "arifa@gmail.com",
+      "role": "Admin",
+      "password": "123"
     }
   ],
   "listings": [
     {
+      "id": "1",
       "title": "The Great Gatsby",
       "author": "F. Scott Fitzgerald",
       "type": "sale",
       "price": 150,
       "condition": "Good",
-      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81af+MCATTL.jpg",
-      "id": "1"
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81af+MCATTL.jpg"
     },
     {
       "id": "2",
@@ -274,15 +236,6 @@
       "price": 299,
       "condition": "New",
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51-nXsSRfZL._SX329_BO1,204,203,200_.jpg"
-    },
-    {
-      "id": "8",
-      "title": "The Subtle Art of Not Giving a F*ck",
-      "author": "Mark Manson",
-      "type": "sale",
-      "price": 180,
-      "condition": "Very Good",
-      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71QKQ9mwV7L.jpg"
     },
     {
       "id": "9",
@@ -355,24 +308,6 @@
       "price": 185,
       "condition": "Very Good",
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/815WORuYMML.jpg"
-    },
-    {
-      "id": "7930",
-      "title": "h",
-      "author": "",
-      "type": "",
-      "price": "",
-      "condition": "",
-      "imageUrl": ""
-    },
-    {
-      "id": "c2cb",
-      "title": "",
-      "author": "",
-      "type": "",
-      "price": "",
-      "condition": "",
-      "imageUrl": ""
     }
   ]
 }

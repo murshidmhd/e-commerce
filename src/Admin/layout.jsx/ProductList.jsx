@@ -23,7 +23,7 @@ function ProductList() {
       console.error(error);
     }
   };
-
+  
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:3000/listings/${id}`);
@@ -40,7 +40,6 @@ function ProductList() {
 
   return (
     <div className="p-6">
-      {/* Button toggle */}
       <div className="flex justify-end mb-4">
         <button
           onClick={() => setShowForm(!showForm)}
@@ -55,7 +54,6 @@ function ProductList() {
         </button>
       </div>
 
-      {/* Show Form */}
       {showForm && (
         <div className="mb-8 transition-all duration-500 ease-in-out transform scale-95 animate-fadeIn">
           <ProductForm

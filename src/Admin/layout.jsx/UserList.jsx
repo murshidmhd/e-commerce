@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import UserForm from "./UserForm";
+import toast from "react-hot-toast";
 
 function UserList() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [showAddForm, setShowAddForm] = useState(false);
-  const [editUser, setEditUser] = useState(null); 
+  const [editUser, setEditUser] = useState(null);
 
   useEffect(() => {
     fetchUsers();
@@ -26,19 +27,17 @@ function UserList() {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this user?")) {
-      try {
-        await axios.delete(`http://localhost:3000/users/${id}`);
-        alert("🗑️ User deleted successfully!");
-        fetchUsers(); 
-      } catch (err) {
-        console.error("Error deleting user:", err);
-        alert("❌ Failed to delete user");
-      }
+    try {
+      await axios.delete(`http://localhost:3000/users/${id}`);
+      toast.success(" User deleted successfully!");
+      fetchUsers();
+    } catch (err) {
+      console.error("Error deleting user:", err);
+      toast.error(" Failed to delete user");
     }
   };
 
-  const toggleBlock = async (id, blocked) => {
+  const handleBlock = async (id, blocked) => {
     try {
       await axios.patch(`http://localhost:3000/users/${id}`, {
         blocked: !blocked,
@@ -49,7 +48,7 @@ function UserList() {
         )
       );
     } catch (err) {
-      console.error("Error updating user:", err);
+      console.error("Error updating :", err);
     }
   };
 
@@ -61,9 +60,7 @@ function UserList() {
     );
 
   const filteredUsers = users.filter((user) =>
-    [user.name, user.email, user.role].some((field) =>
-      field?.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+    user.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -71,28 +68,21 @@ function UserList() {
       {/* Add User Button */}
       <div className="flex justify-end mb-4">
         <button
-          onClick={() => {
-            setShowAddForm(!showAddForm);
-            setEditUser(null); 
-          }}
-          className={`font-bold py-2 px-4 rounded transition-colors duration-200 ${
-            showAddForm
-              ? "bg-red-500 hover:bg-red-600 text-white"
-              : "bg-blue-500 hover:bg-blue-700 text-white"
-          }`}
+          onClick={() => setShowAddForm(!showAddForm)}
+          className="px-4 py-2 bg-blue-500 text-white rounded"
         >
-          {showAddForm ? "Cancel" : "➕ Add User"}
+          Add User
         </button>
       </div>
 
       {/* Add/Edit Form */}
       {(showAddForm || editUser) && (
         <div className="mb-8 transition-all duration-500 ease-in-out transform scale-95 animate-fadeIn">
-          <UserForm 
+          <UserForm
             setShowAddForm={setShowAddForm}
-            fetchUsers={fetchUsers}  
-            editUser={editUser}      
-            setEditUser={setEditUser} 
+            fetchUsers={fetchUsers}
+            editUser={editUser}
+            setEditUser={setEditUser}
           />
         </div>
       )}
@@ -119,40 +109,35 @@ function UserList() {
               key={user.id}
               className="bg-white shadow-lg rounded-xl p-4 border border-gray-200 flex flex-col items-center"
             >
-              <h3 className="font-semibold text-lg text-gray-900">{user.name}</h3>
+              <h3 className="font-semibold text-lg text-gray-900">
+                {user.name}
+              </h3>
               <p className="text-gray-600">{user.email}</p>
               <p className="text-gray-600">Role: {user.role || "-"}</p>
               <span
-                className={`mt-2 px-3 py-1 rounded-full text-sm font-medium ${
-                  user.blocked
-                    ? "bg-red-100 text-red-700"
-                    : "bg-green-100 text-green-700"
-                }`}
+                className={user.blocked ? "text-red-500" : "text-green-500"}
               >
-                {user.blocked ? "Blocked" : "Active"}
+                {user.blocked ? "❌ Blocked" : "✅ Active"}
               </span>
 
               {/* edit btn  */}
               <div className="mt-4 flex gap-2">
                 <button
                   onClick={() => {
-                    setEditUser(user);     
-                    setShowAddForm(true);   
+                    setEditUser(user);
+                    setShowAddForm(true);
                   }}
                   className="px-3 py-2 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
                 >
                   ✏️ Edit
                 </button>
                 <button
-                  onClick={() => toggleBlock(user.id, user.blocked)}
-                  className={`px-3 py-2 text-sm rounded-lg text-white transition-colors ${
-                    user.blocked
-                      ? "bg-green-500 hover:bg-green-600"
-                      : "bg-yellow-500 hover:bg-yellow-600"
-                  }`}
+                  onClick={() => handleBlock(user.id, user.blocked)}
+                  className="px-3 py-2 bg-blue-500 text-white rounded"
                 >
-                  {user.blocked ? "🔓 Unblock" : "🔒 Block"}
+                  {user.blocked ? "Unblock" : "Block"}
                 </button>
+
                 {/*  Delete button */}
                 <button
                   onClick={() => handleDelete(user.id)}

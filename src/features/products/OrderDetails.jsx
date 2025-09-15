@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useCart } from "../context/CartContext";
-import toast from "react-hot-toast";
 
 function OrderDetails() {
-  const { cartItems, clearCart } = useCart();
   const navigate = useNavigate();
 
-
   const handlePlaceOrder = async () => {
-    navigate("/paymentpage")
+    navigate("/paymentpage");
   };
   useState();
   return (

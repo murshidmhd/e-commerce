@@ -1,43 +1,9 @@
-// src/pages/Cart.jsx
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../features/context/CartContext";
 import toast from "react-hot-toast";
-import EmptyCart from "../components /EmptyCart";
-import CartItem from "../components /CartItem";
-import CartSummary from "../components /CartSummery";
 
-const LoadingState = () => (
-  <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50">
-    <div className="text-center space-y-6">
-      <div className="relative">
-        <div className="w-16 h-16 border-4 border-blue-200 rounded-full animate-pulse"></div>
-        <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin absolute top-0"></div>
-      </div>
-      <p className="text-xl font-semibold text-gray-700">Loading your cart...</p>
-    </div>
-  </div>
-);
-
-const ErrorState = ({ error }) => (
-  <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 via-white to-orange-50">
-    <div className="text-center space-y-6 max-w-md mx-auto p-8">
-      <div className="text-6xl">⚠️</div>
-      <div className="space-y-3">
-        <h3 className="text-2xl font-bold text-gray-800">Something went wrong</h3>
-        <p className="text-gray-600">{error}</p>
-      </div>
-      <button
-        onClick={() => window.location.reload()}
-        className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-2xl hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105"
-      >
-        Try Again
-      </button>
-    </div>
-  </div>
-);
-
-function Cart() {
+export default function Cart() {
   const {
     cartItems,
     removeFromCart,
@@ -49,85 +15,155 @@ function Cart() {
 
   const navigate = useNavigate();
 
-  const handleUpdateQuantity = useCallback((itemId, newQuantity) => {
-    if (newQuantity < 1) return;
-    updateQuantity(itemId, newQuantity);
+  const handleUpdateQuantity = useCallback((id, qty) => {
+    if (qty < 1) return;
+    updateQuantity(id, qty);
   }, [updateQuantity]);
 
-  const handleRemoveItem = useCallback((item) => {
+  const handleRemove = useCallback(item => {
     removeFromCart(item);
-    toast.success(`📚 "${item.title || item.name}" removed from cart`);
+    toast.success(`Removed "${item.title || item.name}"`);
   }, [removeFromCart]);
 
-  const handleClearCart = useCallback(() => {
-    if (window.confirm('Are you sure you want to clear your entire cart?')) {
+  const handleClear = useCallback(() => {
+    if (window.confirm("Clear entire cart?")) {
       clearCart();
-      toast.success('🗑️ Cart cleared successfully');
+      toast.success("Cart cleared");
     }
   }, [clearCart]);
 
-  const handlePlaceOrder = useCallback(async () => {
-    try {
-      toast.success('🎉 Redirecting to checkout...');
-      navigate("/orderdetails");
-    } catch (err) {
-      console.error("Error placing order", err);
-      toast.error("Something went wrong while placing order");
-    }
-  }, [navigate]);
+  const handleCheckout = useCallback(() => {
+    if (cartItems.length === 0) return;
+    toast.success("Redirecting...");
+    navigate("/orderdetails");
+  }, [cartItems.length, navigate]);
 
-  if (loading) return <LoadingState />;
-  if (error) return <ErrorState error={error} />;
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-400 border-t-transparent"></div>
+      </div>
+    );
+  }
 
-  const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  if (error) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center text-center p-6">
+        <div className="text-6xl mb-4">⚠️</div>
+        <h2 className="text-2xl font-bold mb-2">Error</h2>
+        <p className="mb-4">{error}</p>
+        <button
+          onClick={() => window.location.reload()}
+          className="px-6 py-2 bg-blue-600 text-white rounded"
+        >
+          Try Again
+        </button>
+      </div>
+    );
+  }
+
+  if (cartItems.length === 0) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center">
+        <div className="text-8xl opacity-20 mb-4">🛒</div>
+        <h3 className="text-3xl font-bold mb-2">Your cart is empty</h3>
+        <p className="text-gray-600 mb-6">Browse items and add them to your cart.</p>
+        <button
+          onClick={() => navigate("/shop")}
+          className="bg-blue-600 text-white px-6 py-3 rounded"
+        >
+          Start Shopping
+        </button>
+      </div>
+    );
+  }
+
+  const subtotal = cartItems.reduce((sum, i) => sum + i.price * i.quantity, 0);
+  const itemCount = cartItems.reduce((sum, i) => sum + i.quantity, 0);
+  const shipping = subtotal > 500 ? 0 : 50;
+  const total = subtotal + shipping;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12 space-y-4">
-          <h1 className="text-5xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Shopping Cart
-          </h1>
-          {cartItems.length > 0 && (
-            <p className="text-xl text-gray-600">
-              {itemCount} {itemCount === 1 ? 'item' : 'items'} in your cart
-            </p>
-          )}
-          <div className="flex justify-center">
-            <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full"></div>
-          </div>
-        </div>
+    <div className="min-h-screen p-6 bg-gray-100 max-w-5xl mx-auto">
+      <h1 className="text-4xl font-bold mb-6">Shopping Cart</h1>
 
-        {cartItems.length === 0 ? (
-          <EmptyCart />
-        ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Cart Items */}
-            <div className="lg:col-span-2 space-y-6">
-              {cartItems.map((item) => (
-                <CartItem
-                  key={item.id}
-                  item={item}
-                  onUpdateQuantity={handleUpdateQuantity}
-                  onRemove={handleRemoveItem}
-                />
-              ))}
-            </div>
-
-            {/* Cart Summary */}
-            <div className="lg:col-span-1">
-              <CartSummary
-                cartItems={cartItems}
-                onClearCart={handleClearCart}
-                onPlaceOrder={handlePlaceOrder}
+      <div className="space-y-6 mb-8">
+        {cartItems.map(item => (
+          <div
+            key={item.id}
+            className="bg-white p-4 rounded-lg flex items-center justify-between"
+          >
+            <div className="flex items-center gap-4">
+              <img
+                src={item.imageUrl}
+                alt={item.title || item.name}
+                className="w-20 h-20 object-cover rounded"
               />
+              <div>
+                <h3 className="font-semibold">{item.title || item.name}</h3>
+                <p className="text-gray-600">₹{item.price.toFixed(2)} each</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() =>
+                  handleUpdateQuantity(item.id, item.quantity - 1)
+                }
+                className="px-2 bg-gray-200 rounded"
+              >
+                –
+              </button>
+              <span className="px-3">{item.quantity}</span>
+              <button
+                onClick={() =>
+                  handleUpdateQuantity(item.id, item.quantity + 1)
+                }
+                className="px-2 bg-gray-200 rounded"
+              >
+                +
+              </button>
+              <button
+                onClick={() => handleRemove(item)}
+                className="ml-4 text-red-500"
+              >
+                Remove
+              </button>
+            </div>
+            <div className="font-semibold">
+              ₹{(item.price * item.quantity).toFixed(2)}
             </div>
           </div>
-        )}
+        ))}
+      </div>
+
+      <div className="bg-white p-6 rounded-lg">
+        <h2 className="text-2xl font-semibold mb-4">Order Summary</h2>
+        <div className="flex justify-between mb-2">
+          <span>Items ({itemCount})</span>
+          <span>₹{subtotal.toFixed(2)}</span>
+        </div>
+        <div className="flex justify-between mb-2">
+          <span>Shipping</span>
+          <span>{shipping === 0 ? "FREE" : `₹${shipping}`}</span>
+        </div>
+        <div className="border-t pt-2 mt-2 flex justify-between font-bold">
+          <span>Total</span>
+          <span>₹{total.toFixed(2)}</span>
+        </div>
+        <button
+          onClick={handleCheckout}
+          className="w-full mt-4 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+          disabled={cartItems.length === 0}
+        >
+          Place Order
+        </button>
+        <button
+          onClick={handleClear}
+          className="w-full mt-2 bg-gray-200 text-gray-700 py-2 rounded hover:bg-gray-300"
+        >
+          Clear Cart
+        </button>
       </div>
     </div>
   );
 }
-
-export default Cart;

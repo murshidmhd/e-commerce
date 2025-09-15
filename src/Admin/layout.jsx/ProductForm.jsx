@@ -35,16 +35,28 @@ function ProductForm({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const dataToSend = {
+      ...formData,
+      price: Number(formData.price) || 0, // ini preshnam verarth gg NaN 
+    };
 
-    if (editProduct) {
-      await axios.put(
-        `http://localhost:3000/listings/${editProduct.id}`,
-        formData
-      );
-      setEditProduct(null);
-    } else {
-      await axios.post("http://localhost:3000/listings", formData);
+    try {
+      if (editProduct) {
+        await axios.put(
+          `http://localhost:3000/listings/${editProduct.id}`,
+          dataToSend
+        );
+        toast.success("Product updated!");
+      } else {
+        await axios.post("http://localhost:3000/listings", dataToSend);
+        toast.success("Product added.");
+      }
+    } catch (err) {
+      console.error("API Error:", err);
+      toast.error("failed");
     }
+    setShowForm(false);
+    setEditProduct(null);
 
     setFormData({
       title: "",
@@ -72,6 +84,7 @@ function ProductForm({
           onChange={handleChange}
           placeholder="Title"
           className="border p-2 rounded"
+          required
         />
         <input
           type="text"
@@ -80,6 +93,7 @@ function ProductForm({
           onChange={handleChange}
           placeholder="Author"
           className="border p-2 rounded"
+          required
         />
         <input
           type="text"
@@ -88,6 +102,7 @@ function ProductForm({
           onChange={handleChange}
           placeholder="Type"
           className="border p-2 rounded"
+          required
         />
         <input
           type="number"
@@ -96,6 +111,7 @@ function ProductForm({
           onChange={handleChange}
           placeholder="Price"
           className="border p-2 rounded"
+          required
         />
         <input
           type="text"
@@ -104,6 +120,7 @@ function ProductForm({
           onChange={handleChange}
           placeholder="Condition"
           className="border p-2 rounded"
+          required
         />
         <input
           type="text"
@@ -112,6 +129,7 @@ function ProductForm({
           onChange={handleChange}
           placeholder="Image URL"
           className="border p-2 rounded"
+          required
         />
       </div>
 
@@ -119,25 +137,19 @@ function ProductForm({
         <button
           type="submit"
           className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
-          onClick={() => {
-            setShowForm(false);
-            toast.success("Product added.");
-          }}
         >
           {editProduct ? "Update" : "Add"}
         </button>
-        {editProduct  && (
-          <button
-            type="button"
-            onClick={() => {
-              setEditProduct(null);
-              setShowForm(false);
-            }}
-            className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
-          >
-            Cancel
-          </button>
-        )}
+        <button
+          type="button"
+          onClick={() => {
+            setShowForm(false);
+            setEditProduct && setEditProduct(null);
+          }}
+          className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
+        >
+          Cancel
+        </button>
       </div>
     </form>
   );

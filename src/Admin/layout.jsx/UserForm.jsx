@@ -29,11 +29,11 @@ function UserForm({ setShowAddForm, fetchUsers, editUser, setEditUser }) {
     try {
       if (editUser) {
         await axios.put(`http://localhost:3000/users/${editUser.id}`, formData);
-        alert("✅ User updated successfully!");
+        toast.success("updated user");
         setEditUser(null);
       } else {
         await axios.post("http://localhost:3000/users", formData);
-        alert("✅ User added successfully!");
+        toast.success("added user");
       }
 
       setShowAddForm(false);
@@ -94,7 +94,7 @@ function UserForm({ setShowAddForm, fetchUsers, editUser, setEditUser }) {
           value={formData.password}
           onChange={handleChange}
           className="border p-2 rounded"
-          required={!editUser} 
+          required={!editUser}
         />
       </div>
 
@@ -102,18 +102,14 @@ function UserForm({ setShowAddForm, fetchUsers, editUser, setEditUser }) {
         <button
           type="submit"
           className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
-        onClick={()=>{
-          setShowAddForm(false)
-          toast.success("added user")
-        }}
         >
-          {editUser ? "Update" : "Save"} 
+          {editUser ? "Update" : "Save"}
         </button>
         <button
           type="button"
           onClick={() => {
             setShowAddForm(false);
-            setEditUser && setEditUser(null); 
+            setEditUser && setEditUser(null);
           }}
           className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
         >

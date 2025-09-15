@@ -9,16 +9,16 @@ import { OrderProvider } from "./features/context/OrderContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    {/* <BrowserRouter> */}
-    <HashRouter>
-      <WishlistProvider>
-        <CartProvider>
-          <OrderProvider>
-            <App />
-          </OrderProvider>
-        </CartProvider>
-      </WishlistProvider>
-    </HashRouter>
-    {/* </BrowserRouter> */}
+    {/* <HashRouter> */}
+      <BrowserRouter>
+        <WishlistProvider>
+          <CartProvider>
+            <OrderProvider>
+              <App />
+            </OrderProvider>
+          </CartProvider>
+        </WishlistProvider>
+      </BrowserRouter>
+    {/* </HashRouter> */}
   </StrictMode>
 );

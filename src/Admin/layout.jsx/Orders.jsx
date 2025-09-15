@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 function OrdersPage() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    fetchOrders();
+  }, []);
+
+  const fetchOrders = () => {
     axios
       .get("http://localhost:3000/users")
       .then((res) => {
@@ -13,100 +18,83 @@ function OrdersPage() {
           (user.order || []).map((o) => ({
             ...o,
             userId: user.id,
-            userName: user.name,
+            name: user.name,
             userEmail: user.email,
-            status: o.status || "Pending", // fallback if status missing
+            status: o.status || "Pending",
           }))
         );
 
         setOrders(allOrders);
         setLoading(false);
       })
-      .catch((err) => {
-        console.error("Error fetching orders:", err);
+      .catch(() => {
+        toast.error("Error fetching orders!");
         setLoading(false);
       });
-  }, []);
+  };
 
-  if (loading)
-    return (
-      <div className="flex justify-center items-center h-64">
-        <p className="text-gray-600 animate-pulse">Loading orders...</p>
-      </div>
-    );
+  const handleStatus = async (e, order) => {
+    const newStatus = e.target.value;
+    // console.log(order);
+
+    try {
+      const userRes = await axios.get(
+        `http://localhost:3000/users/${order.userId}`
+      );
+
+      console.log(order.userId);
+      console.log(order);
+      console.log(userRes)
+
+      const user = userRes.data;
+      user.order = user.order.map((o) =>
+        o.id === order.id ? { ...o, status: newStatus } : o
+      );
+
+      await axios.put(`http://localhost:3000/users/${order.userId}`, user);
+
+      fetchOrders();
+    } catch {
+      toast.error("Error updating status!");
+    }
+  };
+
+  if (loading) return <div>Loading orders...</div>;
 
   return (
-    <div className="bg-white shadow-lg rounded-xl p-6">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">📦 All Orders</h1>
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr className="bg-gray-100 text-left text-gray-700">
-              <th className="p-3">User</th>
-              <th className="p-3">Email</th>
-              <th className="p-3">Book</th>
-              <th className="p-3">Price</th>
-              <th className="p-3">Condition</th>
-              <th className="p-3">Status</th> {/* new column */}
-            </tr>
-          </thead>
-          <tbody>
-            {orders.length > 0 ? (
-              orders.map((order, index) => (
-                <tr
-                  key={index}
-                  className="border-b hover:bg-gray-50 transition duration-200"
-                >
-                  <td className="p-3 font-medium text-gray-800">
-                    {order.userName}
-                  </td>
-                  <td className="p-3 text-gray-600">{order.userEmail}</td>
-                  <td className="p-3">{order.title}</td>
-                  <td className="p-3 font-semibold text-green-600">
-                    ₹{order.price}
-                  </td>
-                  <td>
-                    <span
-                      className={`px-3 py-1 rounded-full text-sm font-medium ${
-                        order.condition === "New"
-                          ? "bg-green-100 text-green-700"
-                          : "bg-gray-100 text-gray-700" // used gray for "Used" or other
-                      }`}
-                    >
-                      {order.condition}
-                    </span>
-                  </td>
+    <div className="p-4">
+      <h1 className="text-xl font-semibold mb-4">All Orders</h1>
 
-                  <td>
-                    <span
-                      className={`px-3 py-1 rounded-full text-sm font-medium ${
-                        order.status === "Pending"
-                          ? "bg-yellow-100 text-yellow-800"
-                          : order.status === "Confirmed"
-                          ? "bg-blue-100 text-blue-800"
-                          : order.status === "Shipped"
-                          ? "bg-green-100 text-green-800"
-                          : "bg-gray-200 text-gray-700"
-                      }`}
-                    >
-                      {order.status}
-                    </span>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td
-                  colSpan="6"
-                  className="p-6 text-center text-gray-500 italic"
+      <table className="w-full border-collapse">
+        <thead>
+          <tr className="border-b border-gray-300">
+            <th className="text-left p-2">User</th>
+            <th className="text-left p-2">Book</th>
+            <th className="text-left p-2">Price</th>
+            <th className="text-left p-2">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {orders.map((order) => (
+            <tr key={order.id} className="border-b border-gray-200">
+              <td className="p-2">{order.name}</td>
+              <td className="p-2">{order.title}</td>
+              <td className="p-2">₹{order.price}</td>
+              <td className="p-2">
+                <select
+                  value={order.status}
+                  onChange={(e) => handleStatus(e, order)}
+                  className="border rounded p-1"
                 >
-                  No orders found
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+                  <option value="Pending">Pending</option>
+                  <option value="Confirmed">Confirmed</option>
+                  <option value="Shipped">Shipped</option>
+                </select>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
