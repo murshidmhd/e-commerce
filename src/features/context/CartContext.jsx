@@ -102,4 +102,4 @@ export { CartProvider };
 export const useCart = () => useContext(CartContext);
 
 /* this is for we dont write in all section like this 
-const {cartItems , addToCart} = useContext(CartContext);*/
+const {cartItems , addToCart} = useContext(CartContext); */
