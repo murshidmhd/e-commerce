@@ -15,28 +15,26 @@ function DashBoard() {
     const fetcing = async () => {
       setLoading(true);
       try {
-        const usersFetch = await axios.get("http://localhost:3000/users");
-        const listingsFetch = await axios.get("http://localhost:3000/listings");
+        console.log("API base URL:", import.meta.env.VITE_API_URL);
+
+        const usersFetch = await axios.get(`${import.meta.env.VITE_API_URL}/users`);
+        const listingsFetch = await axios.get(`${import.meta.env.VITE_API_URL}/listings`);
         setUsers(usersFetch.data);
         setListings(listingsFetch.data);
-        // console.log(users);
-        // console.log(listings);
+      
         setLoading(false);
 
         let totalorders = usersFetch.data
           .flatMap((u) => {
-            // console.log(u.order )
             return u.order || [];
           })
 
           .reduce((sum, order) => {
             let price = Number(order.price) || 0;
             let quantity = Number(order.quantity) || 0;
-            // console.log(price);
-            // console.log(quantity);
+       
             sum = sum + price * quantity;
-            // console.log(price * quantity);
-            // console.log(sum);
+            
             return sum;
           }, 0);
         setSalesData(totalorders);
@@ -76,12 +74,9 @@ function DashBoard() {
   const userLength = users.length;
   const productLenth = listings.length;
   const totalRevenue = salesData;
-  // console.log(totalRevenue);
-  // console.log(salesData)
-  // console.log(listings);
+  
   useEffect(() => {
     const ordersTotal = users.flatMap((u) =>
-      // console.log(u.order || []);
       (u.order || []).map((o) => ({
         ...o,
         userID: u.id,
@@ -95,7 +90,6 @@ function DashBoard() {
     const lastFive = sort.slice(0, 5);
     setOrders(lastFive);
   }, [users]);
-  // console.log(recentOrdres);
 
   const lineChartData = orders.reduce((acc, order) => {
     const date = new Date(order.date).toLocaleDateString();

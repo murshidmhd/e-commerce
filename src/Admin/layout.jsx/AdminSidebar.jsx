@@ -1,3 +1,4 @@
+// Admin/layout.jsx/AdminSidebar.jsx
 import { NavLink, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
@@ -6,12 +7,14 @@ import {
   ShoppingCart,
   LogOut,
 } from "lucide-react";
+import { useAuth } from "../Context/AuthContext"; 
 
 function AdminSidebar() {
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const handleLogout = () => {
-    localStorage.removeItem("adminToken"); 
+    logout(); 
     navigate("/login");
   };
 

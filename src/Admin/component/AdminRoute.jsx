@@ -1,12 +1,19 @@
-import React from "react";
+// Admin/component/AdminRoute.jsx
 import { Navigate } from "react-router-dom";
+import { useAuth } from "../Context/AuthContext";
 
 function AdminRoute({ children }) {
-  const user = JSON.parse(localStorage.getItem("user"));
-  if (!user || user.role !== "admin") {
-    return <Navigate to="/" />; // redirect if not admin
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return <div>Loading...</div>; // Show loading while checking auth
   }
-  return children; // render admin page
+
+  if (!user || user.role !== "admin") {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
 }
 
 export default AdminRoute;

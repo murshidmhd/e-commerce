@@ -17,7 +17,7 @@ function UserList() {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/users");
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/users`);
       setUsers(res.data);
     } catch (err) {
       console.error("Error fetching users:", err);
@@ -28,7 +28,7 @@ function UserList() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/users/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/users/${id}`);
       toast.success(" User deleted successfully!");
       fetchUsers();
     } catch (err) {
@@ -39,7 +39,7 @@ function UserList() {
 
   const handleBlock = async (id, blocked) => {
     try {
-      await axios.patch(`http://localhost:3000/users/${id}`, {
+      await axios.patch(`${import.meta.env.VITE_API_URL}/users/${id}`, {
         blocked: !blocked,
       });
       setUsers((prev) =>

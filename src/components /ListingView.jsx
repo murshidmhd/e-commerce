@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useCart } from "../features/context/CartContext";
+import toast from "react-hot-toast";
 
 function ListingView() {
-  const { addToCart } = useCart();
+  const { cartItems, addToCart } = useCart();
   const { id } = useParams();
   const navigate = useNavigate();
   const [listing, setListing] = useState(null);
@@ -14,15 +15,24 @@ function ListingView() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/listings/${id}`)
+      .get(`${import.meta.env.VITE_API_URL}/listings/${id}`)
       .then((res) => setListing(res.data))
       .catch(() => setError("Failed to load listing."))
       .finally(() => setLoading(false));
   }, [id]);
 
+  const handleAddToCart = () => {
+    const alreadyInCart = cartItems.some((item) => item.id === listing.id);
+
+    if (alreadyInCart) {
+      toast.error("Already in cart");
+    } else {
+      addToCart(listing);
+      toast.success("Added to cart");
+    }
+  };
   if (loading) return <p className="p-6 text-gray-500">Loading…</p>;
   if (error) return <p className="p-6 text-red-500">{error}</p>;
-
 
   return (
     <div className="max-w-6xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-6">
@@ -67,7 +77,7 @@ function ListingView() {
           {/* Buttons at bottom */}
           <div className="mt-auto flex gap-4">
             <button
-              onClick={()=>addToCart(listing)}
+              onClick={handleAddToCart}
               className="bg-cyan-600 text-white px-6 py-3 rounded-lg hover:bg-cyan-700"
             >
               Add to Cart

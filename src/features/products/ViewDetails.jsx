@@ -17,10 +17,10 @@ function ViewDetails() {
         const userId = localStorage.getItem("userId");
         if (!userId) return navigate("/login");
 
-        const res = await axios.get(`http://localhost:3000/users/${userId}`);
-        const found = res.data.order?.find(
-          (o) => String(o.id) === String(id)
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/users/${userId}`
         );
+        const found = res.data.order?.find((o) => String(o.id) === String(id));
         if (!found) return navigate("/orders");
         setOrder(found);
       } catch (err) {
@@ -111,7 +111,3 @@ function ViewDetails() {
 }
 
 export default ViewDetails;
-
-
-
-

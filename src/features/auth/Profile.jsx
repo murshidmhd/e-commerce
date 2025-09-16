@@ -22,7 +22,7 @@ function Profile() {
       return;
     }
     axios
-      .get(`http://localhost:3000/users/${userId}`)
+      .get(`${import.meta.env.VITE_API_URL}/users/${userId}`)
       .then((res) => {
         setUser(res.data);
         setLoading(false);
@@ -43,7 +43,7 @@ function Profile() {
     }
 
     try {
-      await axios.put(`http://localhost:3000/users/${user.id}`, {
+      await axios.put(`${import.meta.env.VITE_API_URL}/users/${user.id}`, {
         ...user,
         password: newPassword,
       });
@@ -88,7 +88,7 @@ function Profile() {
           <button
             onClick={() => {
               localStorage.removeItem("userId");
-              toast.success("you have successfully logged out of your account")
+              toast.success("you have successfully logged out of your account");
               navigate("/login");
             }}
             className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600"

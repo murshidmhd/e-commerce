@@ -11,7 +11,7 @@ function WishlistProvider({ children }) {
   useEffect(() => {
     if (userId) {
       axios
-        .get(`http://localhost:3000/users/${userId}`)
+        .get(`${import.meta.env.VITE_API_URL}/users/${userId}`)
         .then((res) => setWishlist(res.data.wishlist || []))
         .catch((err) => console.error("Error fetching wishlist:", err));
     }
@@ -19,7 +19,7 @@ function WishlistProvider({ children }) {
 
   const saveWishlsitToServer = async (updatedWishlist) => {
     try {
-      await axios.patch(`http://localhost:3000/users/${userId}`, {
+      await axios.patch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
         wishlist: updatedWishlist,
       });
     } catch (err) {

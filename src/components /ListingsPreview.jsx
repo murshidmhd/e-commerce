@@ -9,7 +9,7 @@ const ListingsPreview = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/listings?_limit=12")
+      .get(`${import.meta.env.VITE_API_URL}/listings?_limit=12`)
       .then((res) => setListings(res.data))
       .catch(() => setError("Failed to load listings."))
       .finally(() => setLoading(false));
@@ -35,11 +35,16 @@ const ListingsPreview = () => {
 
   const getConditionColor = (condition) => {
     switch (condition?.toLowerCase()) {
-      case "new": return "text-green-600 bg-green-50 border-green-200";
-      case "like new": return "text-blue-600 bg-blue-50 border-blue-200";
-      case "good": return "text-yellow-600 bg-yellow-50 border-yellow-200";
-      case "acceptable": return "text-orange-600 bg-orange-50 border-orange-200";
-      default: return "text-gray-600 bg-gray-50 border-gray-200";
+      case "new":
+        return "text-green-600 bg-green-50 border-green-200";
+      case "like new":
+        return "text-blue-600 bg-blue-50 border-blue-200";
+      case "good":
+        return "text-yellow-600 bg-yellow-50 border-yellow-200";
+      case "acceptable":
+        return "text-orange-600 bg-orange-50 border-orange-200";
+      default:
+        return "text-gray-600 bg-gray-50 border-gray-200";
     }
   };
 
@@ -47,7 +52,9 @@ const ListingsPreview = () => {
     if (item.type === "sale") {
       return (
         <div className="flex items-center space-x-2">
-          <span className="text-2xl font-bold text-gray-900">₹{item.price}</span>
+          <span className="text-2xl font-bold text-gray-900">
+            ₹{item.price}
+          </span>
         </div>
       );
     }
@@ -77,8 +84,8 @@ const ListingsPreview = () => {
             Featured Listings
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Discover amazing books from our curated collection. From classics to contemporary, 
-            find your next great read at unbeatable prices.
+            Discover amazing books from our curated collection. From classics to
+            contemporary, find your next great read at unbeatable prices.
           </p>
         </div>
 
@@ -98,20 +105,36 @@ const ListingsPreview = () => {
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     onError={(e) => {
-                      e.target.src = "https://via.placeholder.com/300x400/e2e8f0/64748b?text=No+Image";
+                      e.target.src =
+                        "https://via.placeholder.com/300x400/e2e8f0/64748b?text=No+Image";
                     }}
                   />
                 </div>
-                
+
                 {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
+
                 {/* Quick view button */}
                 <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
                   <div className="bg-white/90 backdrop-blur-sm p-2 rounded-full shadow-lg">
-                    <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    <svg
+                      className="w-5 h-5 text-gray-700"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      />
                     </svg>
                   </div>
                 </div>
@@ -124,26 +147,40 @@ const ListingsPreview = () => {
                   <h3 className="font-bold text-gray-900 text-lg leading-tight mb-2 line-clamp-2 group-hover:text-cyan-600 transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 text-sm font-medium">{item.author}</p>
+                  <p className="text-gray-600 text-sm font-medium">
+                    {item.author}
+                  </p>
                 </div>
 
                 {/* Price and Condition */}
                 <div className="flex items-center justify-between mb-3">
-                  <div>
-                    {getTypeDisplay(item)}
-                  </div>
+                  <div>{getTypeDisplay(item)}</div>
                 </div>
 
                 {/* Condition Badge */}
                 <div className="flex justify-between items-center">
-                  <span className={`inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium border ${getConditionColor(item.condition)}`}>
+                  <span
+                    className={`inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium border ${getConditionColor(
+                      item.condition
+                    )}`}
+                  >
                     {item.condition}
                   </span>
-                  
+
                   {/* Arrow icon */}
                   <div className="text-cyan-500 transform group-hover:translate-x-1 transition-transform duration-300">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
                     </svg>
                   </div>
                 </div>
@@ -160,14 +197,24 @@ const ListingsPreview = () => {
           >
             <span className="relative z-10 flex items-center">
               View All Listings
-              <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              <svg
+                className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </span>
-            
+
             {/* Animated background */}
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            
+
             {/* Shine effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
           </Link>

@@ -3,32 +3,11 @@
     {
       "name": "murshid",
       "email": "murshid@gmail.com",
-      "role": "Admin",
-      "password": "",
+      "role": "admin",
+      "password": "123456",
       "id": "c079",
       "blocked": false,
-      "cart": [
-        {
-          "id": "15",
-          "title": "Thinking, Fast and Slow",
-          "author": "Daniel Kahneman",
-          "type": "bogo",
-          "price": 290,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61fdrEuPJwL._SX329_BO1,204,203,200_.jpg",
-          "quantity": 10
-        },
-        {
-          "id": "14",
-          "title": "The Silent Patient",
-          "author": "Alex Michaelides",
-          "type": "sale",
-          "price": 170,
-          "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81t2CVWEsUL.jpg",
-          "quantity": 1
-        }
-      ],
+      "cart": [],
       "order": [
         {
           "id": "order-1757739222364-mcg2arrrs",
@@ -39,7 +18,7 @@
           "condition": "Good",
           "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81af+MCATTL.jpg",
           "quantity": 1,
-          "status": "Confirmed",
+          "status": "Pending",
           "date": "9/13/2025",
           "paymentMethod": "Cash on Delivery"
         },
@@ -52,7 +31,7 @@
           "condition": "Very Good",
           "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/713jIoMO3UL.jpg",
           "quantity": 1,
-          "status": "Confirmed",
+          "status": "Pending",
           "date": "9/12/2025",
           "paymentMethod": "Card"
         },
@@ -78,7 +57,7 @@
           "condition": "Good",
           "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61fdrEuPJwL._SX329_BO1,204,203,200_.jpg",
           "quantity": 1,
-          "status": "Confirmed",
+          "status": "Pending",
           "date": "9/13/2025",
           "paymentMethod": "Cash on Delivery"
         },
@@ -91,7 +70,7 @@
           "condition": "Good",
           "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81t2CVWEsUL.jpg",
           "quantity": 1,
-          "status": "Shipped",
+          "status": "Pending",
           "date": "9/13/2025",
           "paymentMethod": "Cash on Delivery"
         },
@@ -107,29 +86,111 @@
           "status": "Pending",
           "date": "9/13/2025",
           "paymentMethod": "Cash on Delivery"
-        }
-      ],
-      "wishlist": [
+        },
         {
-          "id": "15",
+          "id": "order-1757916284646-qbz7lhd8u",
           "title": "Thinking, Fast and Slow",
           "author": "Daniel Kahneman",
           "type": "bogo",
           "price": 290,
           "condition": "Good",
-          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61fdrEuPJwL._SX329_BO1,204,203,200_.jpg"
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61fdrEuPJwL._SX329_BO1,204,203,200_.jpg",
+          "quantity": 5,
+          "status": "Pending",
+          "date": "9/14/2025",
+          "paymentMethod": "Card"
+        },
+        {
+          "id": "order-1757916284646-gu6ztio4e",
+          "title": "The Silent Patient",
+          "author": "Alex Michaelides",
+          "type": "sale",
+          "price": 170,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81t2CVWEsUL.jpg",
+          "quantity": 1,
+          "status": "Pending",
+          "date": "9/14/2025",
+          "paymentMethod": "Card"
+        },
+        {
+          "id": "order-1757921642908-eckrq8sqj",
+          "title": "The Silent Patient",
+          "author": "Alex Michaelides",
+          "type": "sale",
+          "price": 170,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81t2CVWEsUL.jpg",
+          "quantity": 1,
+          "status": "Pending",
+          "date": "9/13/2025",
+          "paymentMethod": "UPI"
         }
-      ]
+      ],
+      "wishlist": []
     },
     {
       "id": "0d70",
       "name": "anu",
       "email": "anu@gmail.com",
       "password": "12",
-      "role": "user",
+      "role": "admin",
       "cart": [],
       "wishlist": [],
-      "order": [],
+      "order": [
+        {
+          "id": "order-1757925780007-9isrkje8f",
+          "title": "Becoming",
+          "author": "Michelle Obama",
+          "type": "donation",
+          "price": 0,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81h2gWPTYJL.jpg",
+          "quantity": 1,
+          "status": "Pending",
+          "date": "9/13/2025",
+          "paymentMethod": "UPI"
+        },
+        {
+          "id": "order-1757925780007-jsikgenvi",
+          "title": "Harry Potter and the Sorcerer’s Stone",
+          "author": "J.K. Rowling",
+          "type": "sale",
+          "price": 250,
+          "condition": "Very Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81YOuOGFCJL.jpg",
+          "quantity": 1,
+          "status": "Shipped",
+          "date": "9/15/2025",
+          "paymentMethod": "UPI"
+        },
+        {
+          "id": "order-1757925780007-kzeggncnw",
+          "title": "The Catcher in the Rye",
+          "author": "J.D. Salinger",
+          "type": "sale",
+          "price": 120,
+          "condition": "Acceptable",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81OthjkJBuL.jpg",
+          "quantity": 1,
+          "status": "Confirmed",
+          "date": "9/12/2025",
+          "paymentMethod": "UPI"
+        },
+        {
+          "id": "order-1757925780007-4uczpqsiw",
+          "title": "The Lean Startup",
+          "author": "Eric Ries",
+          "type": "bogo",
+          "price": 275,
+          "condition": "Good",
+          "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg",
+          "quantity": 1,
+          "status": "Confirmed",
+          "date": "9/10/2025",
+          "paymentMethod": "UPI"
+        }
+      ],
       "blocked": false
     },
     {
@@ -169,7 +230,7 @@
       "id": "6a4e",
       "name": "arifa",
       "email": "arifa@gmail.com",
-      "role": "Admin",
+      "role": "admin",
       "password": "123"
     }
   ],
@@ -308,6 +369,15 @@
       "price": 185,
       "condition": "Very Good",
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/815WORuYMML.jpg"
+    },
+    {
+      "id": "2016",
+      "title": "h",
+      "author": "J.D. Salinger",
+      "type": "ds",
+      "price": 45,
+      "condition": "Good",
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81af+MCATTL.jpg"
     }
   ]
 }

@@ -1,3 +1,4 @@
+// PaymentPage.jsx
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +19,6 @@ function PaymentPage() {
       toast.error("Your cart is empty!");
       return;
     }
-
     const userId = localStorage.getItem("userId");
     if (!userId) {
       toast.error("Please login to place an order");
@@ -27,7 +27,9 @@ function PaymentPage() {
     }
 
     try {
-      const response = await axios.get(`http://localhost:3000/users/${userId}`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/users/${userId}`
+      );
       const user = response.data;
 
       const newOrders = cartItems.map((item) => ({
@@ -41,77 +43,70 @@ function PaymentPage() {
         quantity: item.quantity || 1,
         status: "Pending",
         date: new Date().toLocaleDateString(),
-        paymentMethod: paymentMethod,
+        paymentMethod,
       }));
 
-      const updatedUser = {
+      await axios.put(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
         ...user,
         order: [...(user.order || []), ...newOrders],
         cart: [],
-      };
-
-      await axios.put(`http://localhost:3000/users/${userId}`, updatedUser);
+      });
       clearCart();
-
       toast.success("Order placed successfully!");
       navigate("/orders");
-    } catch (err) {
-      console.error("Error placing order", err);
+    } catch {
       toast.error("Something went wrong while placing order");
     }
   };
 
   return (
-  <div className="min-h-screen bg-gray-100 p-6">
-    <div className="max-w-md mx-auto bg-white rounded-lg p-6 shadow-lg">
-      
-      <h1 className="text-xl font-bold mb-4">💳 Payment</h1>
-      
-      <div className="bg-gray-50 p-4 rounded mb-4">
-        <h2 className="font-semibold mb-2">Order Summary</h2>
-        {cartItems.map((item, index) => (
-          <div key={index} className="flex justify-between mb-1">
-            <span>{item.name}</span>
-            <span>₹{item.price}</span>
-          </div>
-        ))}
-        <div className="border-t pt-2 mt-2">
-          <div className="flex justify-between font-bold">
+    <div className="min-h-screen bg-gray-100 p-6 flex justify-center items-center">
+      <div className="w-full max-w-md bg-white rounded-lg p-6 shadow-lg">
+        <h1 className="text-xl font-bold mb-4">💳 Payment</h1>
+        <div className="bg-gray-50 p-4 rounded mb-6">
+          <h2 className="font-semibold mb-2">Order Summary</h2>
+          {cartItems.map((item, i) => (
+            <div key={i} className="flex justify-between mb-1">
+              <span>{item.name}</span>
+              <span>₹{item.price}</span>
+            </div>
+          ))}
+          <div className="border-t pt-2 mt-2 flex justify-between font-bold">
             <span>Total</span>
             <span>₹{total}</span>
           </div>
         </div>
-      </div>
-      
-      <div className="mb-4">
-        <h2 className="font-semibold mb-2">Payment Method</h2>
-        {["UPI", "Card", "Cash"].map((method) => (
-          <label key={method} className="flex items-center mb-2">
-            <input
-              type="radio"
-              name="payment"
-              value={method}
-              checked={paymentMethod === method}
-              onChange={() => setPaymentMethod(method)}
-              className="mr-2"
-            />
-            {method}
-          </label>
-        ))}
-      </div>
-      
-      <button
-        onClick={handlePlaceOrder}
-        disabled={cartItems.length === 0}
-        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 disabled:bg-gray-400"
-      >
-        {cartItems.length === 0 ? "Cart Empty" : "Place Order"}
-      </button>
-      
-    </div>
-  </div>
-);
 
+        <div className="mb-6">
+          <h2 className="font-semibold mb-2">Payment Method</h2>
+          {["UPI", "Card", "Cash"].map((method) => (
+            <label
+              key={method}
+              className="flex items-center mb-2 cursor-pointer"
+            >
+              <input
+                type="radio"
+                name="payment"
+                value={method}
+                checked={paymentMethod === method}
+                onChange={() => setPaymentMethod(method)}
+                className="mr-2"
+              />
+              {method}
+            </label>
+          ))}
+        </div>
+
+        <button
+          onClick={handlePlaceOrder}
+          disabled={cartItems.length === 0}
+          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 disabled:bg-gray-400"
+        >
+          {cartItems.length === 0 ? "Cart Empty" : "Place Order"}
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default PaymentPage;

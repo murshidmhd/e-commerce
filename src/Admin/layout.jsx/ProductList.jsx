@@ -16,7 +16,7 @@ function ProductList() {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/listings");
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/listings`);
       setProducts(res.data);
     } catch (error) {
       toast.error("❌ Failed to fetch products");
@@ -26,7 +26,7 @@ function ProductList() {
   
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/listings/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/listings${id}`);
       toast.info("🗑️ Product deleted");
       fetchProducts();
     } catch (error) {

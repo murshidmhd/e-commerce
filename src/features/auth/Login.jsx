@@ -1,11 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../Admin/Context/AuthContext";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const { login } = useAuth();
 
   const navigate = useNavigate();
 
@@ -20,7 +23,7 @@ function Login() {
 
     try {
       const response = await axios.get(
-        `http://localhost:3000/users?email=${email}`
+        `${import.meta.env.VITE_API_URL}/users?email=${email}`
       );
 
       const users = response.data;
@@ -32,24 +35,23 @@ function Login() {
 
       const user = users[0]; // user  exist
 
-      // Check blocked ippo blocked anengi return avide stop aavum 
+      // Check blocked ippo blocked anengi return avide stop aavum
       if (user.blocked) {
         setError("Your account is blocked. Contact admin.");
-        return; 
+        return;
       }
 
-      // 🔹 Clear old localStorage
       localStorage.clear();
 
-      // 🔹 Store fresh user info
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("userId", user.id);
-      localStorage.setItem("user", JSON.stringify(user)); // full user
+      localStorage.setItem("user", JSON.stringify(user));
 
-      // 🔹 Store arrays separately
       localStorage.setItem("cart", JSON.stringify(user.cart || []));
       localStorage.setItem("wishlist", JSON.stringify(user.wishlist || []));
       localStorage.setItem("order", JSON.stringify(user.order || []));
+
+      login(user);
 
       if (user.role === "admin") {
         navigate("/admin");
@@ -62,9 +64,7 @@ function Login() {
     }
   };
 
-  const handleGoogleLogin = () => {
-    /*google click working function*/
-  };
+  const handleGoogleLogin = () => {};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">

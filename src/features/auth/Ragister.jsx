@@ -31,7 +31,10 @@ function Register() {
         wishlist,
         order,
       };
-      const response = await axios.post("http://localhost:3000/users", newUser);
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/users`,
+        newUser
+      );
       console.log("user registered", response.data);
       alert("registered");
       navigate("/login");

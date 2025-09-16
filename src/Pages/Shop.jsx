@@ -19,7 +19,7 @@ function Shop() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/listings")
+      .get(`${import.meta.env.VITE_API_URL}/listings`)
       .then((res) => {
         setListing(res.data);
         setLoading(false);

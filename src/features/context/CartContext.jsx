@@ -16,7 +16,7 @@ function CartProvider({ children }) {
       setError(null);
 
       axios
-        .get(`http://localhost:3000/users/${userId}`)
+        .get(`${import.meta.env.VITE_API_URL}/users/${userId}`)
         .then((res) => {
           setCartItems(res.data.cart || []);
         })
@@ -32,7 +32,7 @@ function CartProvider({ children }) {
 
   const saveCartToServer = async (updatedCart) => {
     try {
-      await axios.patch(`http://localhost:3000/users/${userId}`, {
+      await axios.patch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
         cart: updatedCart,
       });
     } catch (err) {

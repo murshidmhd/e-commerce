@@ -28,11 +28,14 @@ function UserForm({ setShowAddForm, fetchUsers, editUser, setEditUser }) {
     e.preventDefault();
     try {
       if (editUser) {
-        await axios.put(`http://localhost:3000/users/${editUser.id}`, formData);
+        await axios.put(
+          `${import.meta.env.VITE_API_URL}/users${editUser.id}`,
+          formData
+        );
         toast.success("updated user");
         setEditUser(null);
       } else {
-        await axios.post("http://localhost:3000/users", formData);
+        await axios.post(`${import.meta.env.VITE_API_URL}/users`, formData);
         toast.success("added user");
       }
 
@@ -81,8 +84,8 @@ function UserForm({ setShowAddForm, fetchUsers, editUser, setEditUser }) {
           required
         >
           <option value="">Select Role</option>
-          <option value="Admin">Admin</option>
-          <option value="User">User</option>
+          <option value="admin">admin</option>
+          <option value="user">user</option>
           <option value="Moderator">Moderator</option>
         </select>
         <input

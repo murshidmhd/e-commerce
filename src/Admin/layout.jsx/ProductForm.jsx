@@ -37,18 +37,18 @@ function ProductForm({
     e.preventDefault();
     const dataToSend = {
       ...formData,
-      price: Number(formData.price) || 0, // ini preshnam verarth gg NaN 
+      price: Number(formData.price) || 0, // ini preshnam verarth gg NaN
     };
 
     try {
       if (editProduct) {
         await axios.put(
-          `http://localhost:3000/listings/${editProduct.id}`,
+          `${import.meta.env.VITE_API_URL}/users/${editProduct.id}`,
           dataToSend
         );
         toast.success("Product updated!");
       } else {
-        await axios.post("http://localhost:3000/listings", dataToSend);
+        await axios.post(`${import.meta.env.VITE_API_URL}/listings`, dataToSend);
         toast.success("Product added.");
       }
     } catch (err) {

@@ -10,7 +10,7 @@ import Shop from "./Pages/Shop";
 import Cart from "./Pages/Cart";
 import ProtectedRoute from "./features/auth/PortectedRoute";
 import Wishlist from "./Pages/Wish";
-import OrderPage from "./features/products/OrderPage";
+import OrderPage from "./features/products/Orders";
 import Profile from "./features/auth/Profile";
 import OrderDetails from "./features/products/OrderDetails";
 import ViewDetails from "./features/products/ViewDetails";
@@ -111,7 +111,7 @@ function App() {
             },
           },
         }}
-      />{" "}
+      />
     </>
   );
 }

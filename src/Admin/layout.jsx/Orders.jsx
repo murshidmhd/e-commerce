@@ -12,7 +12,7 @@ function OrdersPage() {
 
   const fetchOrders = () => {
     axios
-      .get("http://localhost:3000/users")
+      .get(`${import.meta.env.VITE_API_URL}/users`)
       .then((res) => {
         const allOrders = res.data.flatMap((user) =>
           (user.order || []).map((o) => ({
@@ -39,19 +39,18 @@ function OrdersPage() {
 
     try {
       const userRes = await axios.get(
-        `http://localhost:3000/users/${order.userId}`
+        `${import.meta.env.VITE_API_URL}/users${order.userId}`
       );
-
-      console.log(order.userId);
-      console.log(order);
-      console.log(userRes)
 
       const user = userRes.data;
       user.order = user.order.map((o) =>
         o.id === order.id ? { ...o, status: newStatus } : o
       );
 
-      await axios.put(`http://localhost:3000/users/${order.userId}`, user);
+      await axios.put(
+        `${import.meta.env.VITE_API_URL}/users/${order.userId}`,
+        user
+      );
 
       fetchOrders();
     } catch {
@@ -62,39 +61,51 @@ function OrdersPage() {
   if (loading) return <div>Loading orders...</div>;
 
   return (
-    <div className="p-4">
-      <h1 className="text-xl font-semibold mb-4">All Orders</h1>
-
-      <table className="w-full border-collapse">
-        <thead>
-          <tr className="border-b border-gray-300">
-            <th className="text-left p-2">User</th>
-            <th className="text-left p-2">Book</th>
-            <th className="text-left p-2">Price</th>
-            <th className="text-left p-2">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders.map((order) => (
-            <tr key={order.id} className="border-b border-gray-200">
-              <td className="p-2">{order.name}</td>
-              <td className="p-2">{order.title}</td>
-              <td className="p-2">₹{order.price}</td>
-              <td className="p-2">
-                <select
-                  value={order.status}
-                  onChange={(e) => handleStatus(e, order)}
-                  className="border rounded p-1"
-                >
-                  <option value="Pending">Pending</option>
-                  <option value="Confirmed">Confirmed</option>
-                  <option value="Shipped">Shipped</option>
-                </select>
-              </td>
+    <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6">
+      <h1 className="text-2xl font-bold mb-6 text-gray-800">All Orders</h1>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white rounded-lg border border-gray-200">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="text-left px-4 py-2 text-gray-600 font-semibold">
+                User
+              </th>
+              <th className="text-left px-4 py-2 text-gray-600 font-semibold">
+                Book
+              </th>
+              <th className="text-left px-4 py-2 text-gray-600 font-semibold">
+                Price
+              </th>
+              <th className="text-left px-4 py-2 text-gray-600 font-semibold">
+                Status
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {orders.map((order) => (
+              <tr
+                key={order.id}
+                className="hover:bg-gray-50 transition-colors border-b border-gray-100"
+              >
+                <td className="px-4 py-3">{order.name}</td>
+                <td className="px-4 py-3">{order.title}</td>
+                <td className="px-4 py-3">₹{order.price}</td>
+                <td className="px-4 py-3">
+                  <select
+                    value={order.status}
+                    onChange={(e) => handleStatus(e, order)}
+                    className="border rounded p-1 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Shipped">Shipped</option>
+                  </select>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
