@@ -30,7 +30,9 @@ function OrderDetails() {
       const userId = localStorage.getItem("userId");
       if (!userId) return;
 
-      const response = await axios.get(`http://localhost:3000/users/${userId}`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/users/${userId}`
+      );
       const userAddresses = response.data.addresses || [];
       setAddresses(userAddresses);
 
@@ -49,7 +51,9 @@ function OrderDetails() {
     e.preventDefault();
     try {
       const userId = localStorage.getItem("userId");
-      const response = await axios.get(`http://localhost:3000/users/${userId}`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/users/${userId}`
+      );
       const user = response.data;
 
       const addressWithId = {
@@ -60,7 +64,7 @@ function OrderDetails() {
 
       const updatedAddresses = [...(user.addresses || []), addressWithId];
 
-      await axios.put(`http://localhost:3000/users/${userId}`, {
+      await axios.put(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
         ...user,
         addresses: updatedAddresses,
       });

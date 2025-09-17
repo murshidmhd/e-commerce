@@ -11,7 +11,6 @@ function PaymentPage() {
   const { clearCart, cartItems } = useCart();
 
   useEffect(() => {
-    // Get selected address from localStorage
     const addressData = localStorage.getItem("selectedAddress");
     if (addressData) {
       setSelectedAddress(JSON.parse(addressData));
@@ -21,7 +20,10 @@ function PaymentPage() {
     }
   }, [navigate]);
 
-  const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
   const shipping = subtotal > 0 ? 50 : 0;
   const total = subtotal + shipping;
 
@@ -39,7 +41,9 @@ function PaymentPage() {
     }
 
     try {
-      const response = await axios.get(`http://localhost:3000/users/${userId}`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/users/${userId}`
+      );
       const user = response.data;
 
       const newOrders = cartItems.map((item) => ({
@@ -55,20 +59,19 @@ function PaymentPage() {
         date: new Date().toLocaleDateString(),
         paymentMethod,
         shippingAddress: selectedAddress, // Store the address with the order
-        orderTotal: total
+        orderTotal: total,
       }));
 
-      await axios.put(`http://localhost:3000/users/${userId}`, {
+      await axios.put(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
         ...user,
         order: [...(user.order || []), ...newOrders],
-        cart: []
+        cart: [],
       });
 
       clearCart();
       localStorage.removeItem("selectedAddress"); // Clean up
       toast.success("Order placed successfully!");
       navigate("/orders");
-      
     } catch (error) {
       console.error("Order placement error:", error);
       toast.error("Something went wrong while placing order");
@@ -105,10 +108,15 @@ function PaymentPage() {
         <h2 className="text-lg font-semibold mb-3">Delivery Address</h2>
         <div className="border rounded p-3 bg-gray-50">
           <div className="flex gap-2 mb-1">
-            <span className="font-medium capitalize">{selectedAddress.type}</span>
+            <span className="font-medium capitalize">
+              {selectedAddress.type}
+            </span>
           </div>
           <p>{selectedAddress.street}</p>
-          <p>{selectedAddress.city}, {selectedAddress.state} - {selectedAddress.pincode}</p>
+          <p>
+            {selectedAddress.city}, {selectedAddress.state} -{" "}
+            {selectedAddress.pincode}
+          </p>
           <p>Phone: {selectedAddress.phone}</p>
         </div>
       </div>
@@ -117,8 +125,11 @@ function PaymentPage() {
       <div className="bg-white rounded-lg shadow p-4 mb-6">
         <h2 className="text-lg font-semibold mb-4">Payment Method</h2>
         <div className="space-y-3">
-          {["UPI", "Card", "Cash on Delivery"].map(method => (
-            <label key={method} className="flex items-center gap-3 cursor-pointer">
+          {["UPI", "Card", "Cash on Delivery"].map((method) => (
+            <label
+              key={method}
+              className="flex items-center gap-3 cursor-pointer"
+            >
               <input
                 type="radio"
                 name="payment"
